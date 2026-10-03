@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="auth-wrapper">
+        <div class="card auth-card">
+            <div class="text-center mb-4">
+                <h2 class="text-gradient mb-1">LearnHire</h2>
+                <p class="text-secondary">Masuk ke akun Anda</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <i class="fas fa-envelope form-icon"></i>
+                    <input type="email" id="email" class="form-control" required placeholder="Masukkan email">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" id="password" class="form-control" required placeholder="Masukkan password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block mb-3" id="btn-submit">
+                    Masuk
+                </button>
+                
+                <div class="text-center">
+                    <a href="register.html" class="text-secondary">Belum punya akun? <span class="text-gradient">Daftar</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/login.js"></script>
+</body>
+</html>

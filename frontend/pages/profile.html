@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+            <div class="mobile-topbar mb-3">
+                <div class="brand text-gradient">LearnHire</div>
+                <button class="btn btn-outline" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="mb-1">Profil Saya</h2>
+                <p class="text-secondary">Kelola informasi pribadi dan pengaturan akun Anda.</p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Profile Card -->
+                <div class="card text-center h-100" style="align-self: start;">
+                    <div class="avatar mx-auto mb-3" style="width: 100px; height: 100px; font-size: 3rem; margin: 0 auto;" id="profile-avatar">U</div>
+                    <h3 id="profile-name-display" class="mb-1">Nama User</h3>
+                    <p class="text-secondary mb-3" id="profile-email-display">user@email.com</p>
+                    <span class="badge badge-active mb-3" id="profile-role-badge">Pencari Kerja</span>
+                    <p class="text-secondary mt-3" style="font-size: 0.9rem;" id="profile-bio-display">Belum ada bio.</p>
+                </div>
+
+                <!-- Edit Form -->
+                <div class="card">
+                    <h3 class="mb-3">Edit Profil</h3>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <i class="fas fa-user form-icon"></i>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <i class="fas fa-envelope form-icon"></i>
+                            <input type="email" id="email" class="form-control" required readonly title="Email tidak dapat diubah">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">No. Telepon</label>
+                            <i class="fas fa-phone form-icon"></i>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Keahlian (pisahkan dengan koma)</label>
+                            <i class="fas fa-star form-icon"></i>
+                            <input type="text" id="skills" class="form-control" placeholder="Contoh: HTML, CSS, JavaScript">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bio Singkat</label>
+                            <textarea id="bio" class="form-control" rows="4" style="padding-left: 1rem;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn-save">Simpan Perubahan</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/profile.js"></script>
+</body>
+</html>

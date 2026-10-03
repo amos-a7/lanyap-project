@@ -1,0 +1,700 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{lastpage}
+
+% --- Color Palette ---
+\definecolor{primary}{RGB}{15, 23, 42}       % Dark Slate
+\definecolor{accent}{RGB}{37, 99, 235}       % Royal Blue
+\definecolor{secondary}{RGB}{71, 85, 105}    % Muted Slate
+\definecolor{boxbg}{RGB}{248, 250, 252}      % Light Gray-Blue
+\definecolor{codebg}{RGB}{15, 23, 42}        % Dark Slate for code
+\definecolor{codetext}{RGB}{226, 232, 240}   % Light text for code
+\definecolor{bordercolor}{RGB}{203, 213, 225}
+\definecolor{highlight}{RGB}{234, 88, 12}    % Orange/Amber
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent,
+    citecolor=accent,
+    pdftitle={Bedah Lengkap Seluruh Folder, File, dan Arsitektur Sistem LearnHire},
+    pdfauthor={Tim Pengembang LearnHire - Teknik Komputer ITS}
+}
+
+% --- Header and Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{secondary}\textbf{LearnHire} | Penjelasan Mendalam Seluruh Folder \& File}
+\fancyhead[R]{\small\color{secondary}Teknik Komputer - ITS}
+\fancyfoot[L]{\small\color{secondary}Desain dan Rekayasa Sistem B}
+\fancyfoot[R]{\small\color{secondary}Halaman \thepage\ dari \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Section Styling ---
+\titleformat{\section}
+  {\Large\bfseries\color{primary}}
+  {\thesection.}{0.8em}{}[\titlerule]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{accent}}
+  {\thesubsection.}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{primary}}
+  {\thesubsubsection.}{0.5em}{}
+
+% --- Code Listing Setup ---
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\scriptsize\color{codetext},
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{bordercolor},
+    xleftmargin=3pt,
+    xrightmargin=3pt
+}
+
+% --- Custom Environments ---
+\newcommand{\folderbox}[2]{
+  \vspace{0.25cm}
+  \noindent
+  \fcolorbox{bordercolor}{boxbg}{%
+    \parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
+      \textbf{\color{accent}[DIREKTORI] \texttt{#1}}\par\vspace{2pt}
+      {\small \textbf{Peran Arsitektur:} #2}
+    }%
+  }
+  \vspace{0.25cm}
+}
+
+\newcommand{\filebox}[4]{
+  \vspace{0.2cm}
+  \noindent
+  \fcolorbox{bordercolor}{boxbg}{%
+    \parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
+      \textbf{\color{primary}\texttt{#1}} \hfill {\footnotesize\color{accent}\textbf{[#2]}}\par\vspace{3pt}
+      {\small \textbf{Deskripsi \& Fungsi:} #3}\par\vspace{2pt}
+      {\small \textbf{Keterkaitan Berkas (Data Flow):} #4}
+    }%
+  }
+  \vspace{0.2cm}
+}
+
+\begin{document}
+
+% ==================== COVER PAGE ====================
+\begin{titlepage}
+    \centering
+    \vspace*{0.8cm}
+    
+    {\Huge \textbf{\color{primary}LearnHire}}\\[0.3cm]
+    {\LARGE \textbf{\color{accent}Buku Pedoman Teknis \& Bedah Struktur Berkas}}\\[0.25cm]
+    {\large \color{secondary}Eksplorasi Mendalam Setiap Direktori, Berkas Sumber Daya, Model, Controller, Rute, Antarmuka, dan Skema Basis Data}\\[1.2cm]
+    
+    \rule{\linewidth}{1.5pt}\\[1.2cm]
+    
+    \begin{minipage}{0.88\textwidth}
+        \normalsize
+        \textbf{\color{primary}INFORMASI AKADEMIK \& SPESIFIKASI PROYEK}\\[0.4cm]
+        \begin{tabular}{ll}
+            \textbf{Mata Kuliah} & : Desain dan Rekayasa Sistem (DRS) B \\
+            \textbf{Departemen} & : Teknik Komputer \\
+            \textbf{Fakultas} & : Teknologi Elektro dan Informatika Cerdas (FTEIC) \\
+            \textbf{Institusi} & : Institut Teknologi Sepuluh Nopember (ITS) \\
+            \textbf{Dosen Pengampu} & : Dr. Supeno Mardi Susiki Nugroho, S.T., M.T. \\
+            \textbf{Arsitektur Perangkat Lunak} & : Model-View-Controller (MVC) \& RESTful API Architecture \\
+            \textbf{Lingkungan Backend} & : Node.js (v20.18.0 LTS), Express.js (v4.18) \\
+            \textbf{Basis Data Relasional} & : MySQL / MariaDB (XAMPP Server Port 3306) \\
+            \textbf{Teknologi Frontend} & : HTML5, CSS3 Glassmorphism, Vanilla JavaScript ES6+ \\
+            \textbf{Sistem Keamanan} & : JWT Bearer Token, Bcryptjs Salt Hashing, Helmet CSP, CORS \\
+            \textbf{Cakupan Dokumentasi} & : Seluruh 65 File Aktif Tanpa Menggunakan Mock Data \\
+        \end{tabular}
+    \end{minipage}
+    
+    \vfill
+    {\small \color{secondary}Surabaya, Indonesia -- 2026}\\[0.15cm]
+    {\footnotesize \color{secondary}Laporan ini disusun secara komprehensif untuk membedah setiap file dan folder secara rinci.}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ==================== BAB 1 ====================
+\section{Pengantar \& Peta Arsitektur Tiga Tingkat (Three-Tier)}
+
+Aplikasi \textbf{LearnHire} dirancang dengan pola arsitektur perangkat lunak \textit{Three-Tier Architecture} yang bersih (\textit{Clean Architecture}). Prinsip utama dari arsitektur ini adalah pemisahan tanggung jawab (\textit{Separation of Concerns}), di mana antarmuka pengguna tidak boleh bersentuhan langsung dengan logika manipulasi data maupun koneksi basis data mentah.
+
+\subsection{Alur Interaksi Antar Layer}
+Setiap interaksi pengguna di layar melewati rute terstruktur sebagai berikut:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Presentation Layer (Frontend):} Pengguna mengisi formulir atau mengklik aksi pada browser (HTML/CSS). Skrip JavaScript klien (\texttt{assets/js/pages/*.js}) menangkap aksi tersebut dan memanggil fungsi pembungkus \texttt{api.js}.
+    \item \textbf{Transport \& Networking (Fetch API):} Permintaan dikirimkan melalui protokol HTTP/HTTPS menggunakan \texttt{fetch()} dengan payload JSON dan header \texttt{Authorization: Bearer <JWT>}.
+    \item \textbf{Routing \& Middleware Layer (Express.js):} Server menerima request di \texttt{backend/server.js}, lalu diarahkan ke sub-rute spesifik (\texttt{backend/routes/*.routes.js}). Rute dilindungi oleh middleware penjaga (\texttt{auth.middleware.js}) yang memeriksa keabsahan token JWT dan status hak akses (\textit{role}).
+    \item \textbf{Controller Layer (Business Logic):} Controller (\texttt{backend/controllers/*.controller.js}) memvalidasi parameter input, memproses aturan bisnis (misalnya hashing password atau pengecekan duplikasi lamaran), dan memanggil fungsi pada Model.
+    \item \textbf{Model Layer (Data Abstraction):} Model (\texttt{backend/models/*.model.js}) menyusun query SQL menggunakan parameter aman (\textit{Prepared Statements}) untuk dieksekusi oleh pool koneksi MySQL.
+    \item \textbf{Database Layer (MySQL):} Basis data \texttt{learnhire\_db} memproses query relasional, mengecek batasan (\textit{Primary Key, Foreign Key, Unique Constraints}), dan mengembalikan baris data ke Model.
+    \item \textbf{Response Cycle:} Hasil dikembalikan secara berjenjang ke Controller, dibungkus dalam format JSON seragam, lalu dikirim kembali ke Frontend untuk memperbarui tampilan UI secara dinamis.
+\end{enumerate}
+
+\newpage
+
+% ==================== BAB 2 ====================
+\section{Bedah Berkas Root \& Direktori Database}
+
+\subsection{Berkas pada Root Direktori (\texttt{learnhire/})}
+
+\filebox{.gitignore}{Konfigurasi Pengabaian Git}
+{
+Menentukan berkas dan folder lokal yang tidak boleh dimasukkan ke dalam pelacakan repositori Git. Mencegah berkas-berkas sensitif dan berukuran besar terunggah ke publik.
+}
+{
+Mengabaikan folder \texttt{node\_modules/} (karena dependensi diinstal via \texttt{package.json}), berkas lingkungan \texttt{.env} (yang menyimpan password database dan rahasia JWT), berkas log eksekusi (\texttt{*.log}), dan berkas sementara sistem operasi (\texttt{.DS\_Store}, \texttt{Thumbs.db}).
+}
+
+\filebox{README.md}{Dokumentasi Pengguna \& Manual Instalasi}
+{
+Buku petunjuk komprehensif bagi pengembang dan penguji perangkat lunak. Memuat deskripsi LearnHire, ringkasan fitur, daftar teknologi, prasyarat instalasi (Node.js LTS, XAMPP), langkah konfigurasi basis data, panduan menjalankan server Express, daftar kredensial akun demonstrasi, spesifikasi ringkas REST API, dan solusi pemecahan masalah (\textit{troubleshooting}).
+}
+{
+Menjadi pintu masuk utama bagi siapa pun yang baru membuka repositori untuk memahami cara kerja dan cara menjalankan seluruh berkas di folder \texttt{backend/} dan \texttt{frontend/}.
+}
+
+\subsection{Direktori Basis Data (\texttt{database/})}
+\folderbox{database/}{Folder penyimpanan skrip inisialisasi basis data relasional MySQL.}
+
+\filebox{database/database.sql}{Skrip DDL \& DML Skema MySQL}
+{
+Skrip SQL komprehensif yang siap dieksekusi langsung melalui fitur \textit{Import} phpMyAdmin atau terminal MySQL. Berisi instruksi pembuatan database \texttt{learnhire\_db}, deklarasi 9 tabel normal dengan relasi kunci asing (\textit{Foreign Key}), indeks performa, serta penyisipan data awal (\textit{seeding}) sebanyak 7 pengguna (admin dan user reguler dengan hash Bcrypt valid), 6 perusahaan mitra ternama, 12 lowongan kerja, 10 kursus online terstruktur, riwayat lamaran, keikutsertaan kelas, dan tiket customer service.
+}
+{
+Diimpor ke layanan MySQL (XAMPP). Seluruh kueri pada berkas-berkas di dalam folder \texttt{backend/models/} bergantung penuh pada keberadaan tabel dan kolom yang didefinisikan di berkas ini.
+}
+
+\newpage
+
+% ==================== BAB 3 ====================
+\section{Bedah Direktori Backend (\texttt{backend/})}
+
+Direktori \texttt{backend/} adalah inti pemrosesan logika server, otorisasi keamanan, dan pengelola jembatan komunikasi antara basis data MySQL dan antarmuka web.
+
+\subsection{Berkas Konfigurasi \& Entry Point Root Backend}
+
+\filebox{backend/server.js}{Entry Point Aplikasi Express.js}
+{
+Berkas utama yang dijalankan saat perintah \texttt{npm run dev} atau \texttt{node server.js} dieksekusi. Berfungsi memuat pustaka Express, membaca konfigurasi \texttt{.env}, mengaktifkan middleware keamanan \texttt{helmet} (dengan pengaturan CSP permisif agar CDN font Poppins dan Font Awesome dapat dimuat), mengaktifkan \texttt{cors()} untuk request lintas-origin, dan \texttt{express.json()} untuk mengurai body request. Selain itu, berkas ini melayani file statis antarmuka dari direktori \texttt{../frontend}, me-mount master router di \texttt{/api}, menangani rute tak dikenal (\textit{SPA fallback}), dan mendaftarkan middleware penanganan error.
+}
+{
+Mengimpor middleware dari \texttt{backend/middleware/error.middleware.js} dan seluruh daftar rute dari \texttt{backend/routes/index.js}.
+}
+
+\filebox{backend/package.json}{Manifes Dependensi Node.js / NPM}
+{
+Mendefinisikan metadata proyek backend, skrip eksekusi (\texttt{"start": "node server.js"} dan \texttt{"dev": "nodemon server.js"}), serta daftar dependensi pustaka:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{express}: Framework web HTTP server minimalis.
+    \item \texttt{mysql2}: Driver komunikasi MySQL berkinerja tinggi dengan dukungan Promise.
+    \item \texttt{bcryptjs}: Pustaka algoritma hashing kata sandi satu arah.
+    \item \texttt{jsonwebtoken}: Pustaka pembuatan dan verifikasi token otentikasi JWT.
+    \item \texttt{helmet}: Pustaka pengaman HTTP response headers.
+    \item \texttt{cors}: Pengatur izin Cross-Origin Resource Sharing.
+    \item \texttt{dotenv}: Pemuat variabel lingkungan dari berkas \texttt{.env}.
+    \item \texttt{nodemon}: Utilitas auto-restart server saat terdeteksi perubahan kode.
+\end{itemize}
+}
+{
+Dipakai oleh manajer paket \texttt{npm} untuk mengunduh modul ke folder \texttt{node\_modules/}.
+}
+
+\filebox{backend/.env \& backend/.env.example}{Konfigurasi Variabel Lingkungan}
+{
+Berkas kunci rahasia yang menyimpan konfigurasi dinamis sistem:
+\texttt{PORT=3000}, \texttt{DB\_HOST=localhost}, \texttt{DB\_PORT=3306}, \texttt{DB\_USER=root}, \texttt{DB\_PASSWORD=}, \texttt{DB\_NAME=learnhire\_db}, \texttt{JWT\_SECRET=learnhire\_jwt\_secret\_key\_2024\_change\_this}, dan \texttt{JWT\_EXPIRES\_IN=24h}. Berkas \texttt{.env.example} berfungsi sebagai cetak biru publik tanpa mengekspos kredensial produksi.
+}
+{
+Dibaca secara global oleh \texttt{dotenv} pada baris pertama \texttt{backend/server.js}, \texttt{backend/config/database.js}, dan controller autentikasi.
+}
+
+\newpage
+
+\subsection{Subdirektori Konfigurasi (\texttt{backend/config/})}
+\folderbox{backend/config/}{Pusat konfigurasi infrastruktur dan layanan pihak ketiga.}
+
+\filebox{backend/config/database.js}{Manajer Koneksi Basis Data (Connection Pool)}
+{
+Menginisialisasi koneksi ke server MySQL menggunakan metode \texttt{mysql.createPool()}. Connection Pool mengizinkan Express menggunakan kembali koneksi yang sudah terbuka tanpa harus membuat koneksi TCP baru pada setiap request, yang secara drastis meningkatkan kecepatan respon dan mencegah server kehabisan memori. Berkas ini mengekspor \texttt{pool.promise()} sehingga seluruh model dapat menggunakan sintaks modern \texttt{async/await}.
+}
+{
+Diimpor oleh setiap berkas model di dalam folder \texttt{backend/models/} untuk mengeksekusi perintah SQL.
+}
+
+\subsection{Subdirektori Dokumentasi API (\texttt{backend/docs/})}
+\folderbox{backend/docs/}{Dokumentasi teknis internal backend.}
+
+\filebox{backend/docs/api.md}{Spesifikasi Rinci REST API Endpoint}
+{
+Dokumen referensi teknis yang membedah setiap endpoint: HTTP Method, URL lengkap, header otorisasi, contoh JSON request body, contoh respon sukses (HTTP 200/201), format respon galat (HTTP 400/401/403/404/500), serta aturan batasan bisnis bagi pengembang antarmuka.
+}
+{
+Dijadikan acuan dalam pengembangan fungsi-fungsi pada \texttt{frontend/assets/js/pages/*.js}.
+}
+
+\subsection{Subdirektori Middleware (\texttt{backend/middleware/})}
+\folderbox{backend/middleware/}{Fungsi penyaring request yang dieksekusi sebelum request mencapai controller tujuan.}
+
+\filebox{backend/middleware/auth.middleware.js}{Penjaga Keamanan Token JWT \& Peran Akun}
+{
+Menyediakan tiga fungsi middleware krusial:
+\begin{enumerate}[leftmargin=*]
+    \item \texttt{verifyToken}: Mengambil token dari header \texttt{Authorization: Bearer <token>}. Jika token tidak ada atau tidak valid/kedaluwarsa, request langsung dipotong dengan respon HTTP 401 (\textit{Unauthorized}). Jika valid, isi token didekode dan ditempelkan ke objek \texttt{req.user}.
+    \item \texttt{isAdmin}: Memeriksa apakah \texttt{req.user.role === 'admin'}. Jika bukan admin, server menolak akses dengan HTTP 403 (\textit{Forbidden}).
+    \item \texttt{optionalAuth}: Mengekstrak identitas jika token disertakan, tetapi tidak memblokir request jika pengguna belum login (berguna untuk endpoint katalog).
+\end{enumerate}
+}
+{
+Dipasang pada rute-rute di \texttt{backend/routes/*.routes.js} yang memerlukan hak akses khusus.
+}
+
+\filebox{backend/middleware/error.middleware.js}{Penanganan Error Terpusat}
+{
+Menyediakan fungsi \texttt{notFound} (menangkap URL rute yang tidak terdaftar dan menghasilkan respon HTTP 404 JSON seragam) serta fungsi \texttt{errorHandler} (menangkap seluruh galat internal server HTTP 500 tanpa mengekspos rincian kueri database yang sensitif kepada pengguna umum).
+}
+{
+Didaftarkan di baris akhir \texttt{backend/server.js} setelah seluruh rute di-mount.
+}
+
+\newpage
+
+\subsection{Subdirektori Model Data (\texttt{backend/models/})}
+\folderbox{backend/models/}{Layer abstraksi kueri SQL. Berisi representasi entitas data dan eksekusi prepared statements aman.}
+
+\filebox{backend/models/user.model.js}{Model Entitas Pengguna (Users)}
+{
+Menyediakan fungsi manipulasi tabel \texttt{users}:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{findAll()}: Mengambil daftar seluruh user (tanpa kolom password).
+    \item \texttt{findById(id)}: Mengambil profil user berdasarkan Primary Key ID.
+    \item \texttt{findByEmail(email)}: Mengambil data user beserta hash password untuk verifikasi login.
+    \item \texttt{create(userData)}: Menyimpan user baru dengan nama, email, password ter-hash, nomor telepon, dan role.
+    \item \texttt{update(id, userData)}: Menggunakan kueri cerdas berbasis \texttt{COALESCE(?, nama\_kolom)}, sehingga jika user hanya memperbarui bio atau nomor telepon, data keahlian dan alamat sebelumnya tidak akan terhapus atau tertimpa menjadi NULL.
+    \item \texttt{delete(id)}: Menghapus akun user dari sistem.
+\end{itemize}
+}
+{
+Menggunakan koneksi dari \texttt{config/database.js}. Dipanggil oleh \texttt{controllers/auth.controller.js}.
+}
+
+\filebox{backend/models/job.model.js}{Model Entitas Lowongan Kerja (Jobs)}
+{
+Mengelola kueri tabel \texttt{jobs}. Fungsi \texttt{findAll(filters)} melakukan operasi \texttt{JOIN} ke tabel \texttt{companies} dan \texttt{job\_categories} untuk menyajikan nama perusahaan, logo perusahaan, dan nama kategori secara utuh. Fungsi ini mendukung filter dinamis berdasarkan kata kunci pencarian (\texttt{LIKE}), kategori (\texttt{category\_id}), tipe kerja (\texttt{Full-time/Part-time/Contract/Internship}), dan status aktif. Juga menyediakan fungsi \texttt{findById}, \texttt{create}, \texttt{update}, \texttt{delete}, dan \texttt{countAll}.
+}
+{
+Dipanggil oleh \texttt{controllers/job.controller.js} dan \texttt{controllers/dashboard.controller.js}.
+}
+
+\filebox{backend/models/company.model.js}{Model Entitas Perusahaan Mitra (Companies)}
+{
+Mengelola data master instansi mitra pada tabel \texttt{companies}: nama perusahaan, logo, deskripsi profil, lokasi kantor, alamat website, dan sektor industri. Menyediakan fungsi CRUD lengkap (\texttt{findAll}, \texttt{findById}, \texttt{create}, \texttt{update}, \texttt{delete}).
+}
+{
+Dipanggil oleh \texttt{controllers/company.controller.js}. Menjadi target relasi Foreign Key bagi model lowongan kerja.
+}
+
+\filebox{backend/models/course.model.js}{Model Entitas Kursus Pelatihan (Courses)}
+{
+Mengelola katalog kursus pada tabel \texttt{courses}. Fungsi \texttt{findAll(filters)} melakukan \texttt{JOIN} ke tabel \texttt{course\_categories} dan mendukung penyaringan berdasarkan kata kunci judul, instruktur, ID kategori, dan tingkat keahlian (\texttt{level}: \textit{Beginner, Intermediate, Advanced}). Juga mengelola informasi durasi, harga kelas, rating, serta jumlah total siswa yang terdaftar.
+}
+{
+Dipanggil oleh \texttt{controllers/course.controller.js} dan diinkremen otomatis oleh model enrollment.
+}
+
+\filebox{backend/models/application.model.js}{Model Transaksi Lamaran Pekerjaan (Job Applications)}
+{
+Mengelola tabel relasional \texttt{job\_applications}:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{findByUserId(userId)}: Mengambil daftar lamaran yang diajukan oleh user tertentu beserta detail judul pekerjaan dan nama perusahaannya.
+    \item \texttt{findAll()}: Mengambil seluruh berkas lamaran dari semua pengguna (khusus untuk hak akses administrator).
+    \item \texttt{checkExisting(userId, jobId)}: Memeriksa apakah user sudah pernah melamar di posisi tersebut untuk mencegah pengiriman berkas ganda.
+    \item \texttt{create()}, \texttt{update()}, \texttt{delete()}: Menyimpan pengajuan lamaran, mengubah status seleksi (\textit{pending, reviewed, accepted, rejected}), dan membatalkan lamaran.
+\end{itemize}
+}
+{
+Dipanggil oleh \texttt{controllers/application.controller.js}. Menghubungkan tabel \texttt{users} dan \texttt{jobs}.
+}
+
+\newpage
+
+\filebox{backend/models/enrollment.model.js}{Model Pendaftaran Kursus (Course Enrollments)}
+{
+Mengelola tabel \texttt{course\_enrollments}. Fungsi \texttt{create()} menyimpan pendaftaran kelas baru sekaligus mengeksekusi kueri otomatis untuk menambah counter \texttt{total\_students} pada tabel \texttt{courses}. Fungsi \texttt{update()} memperbarui persentase pemahaman materi (0\% hingga 100\%) dan otomatis membubuhkan timestamp \texttt{completed\_at} saat kursus dituntaskan. Fungsi \texttt{delete()} membatalkan kelas dan mengurangi counter siswa.
+}
+{
+Dipanggil oleh \texttt{controllers/enrollment.controller.js}. Menghubungkan tabel \texttt{users} dan \texttt{courses}.
+}
+
+\filebox{backend/models/category.model.js}{Model Kategori Referensi (Categories)}
+{
+Menyediakan fungsi pembacaan data master kategori: \texttt{findAllJobCategories()} untuk kategori pekerjaan (Teknologi, Desain, Marketing, Finance, Engineering, Data Science) dan \texttt{findAllCourseCategories()} untuk bidang kursus (Programming, UI/UX Design, Data Science, Digital Marketing, Business, Language).
+}
+{
+Dipanggil oleh \texttt{controllers/category.controller.js} untuk mengisi elemen \texttt{<select>} dropdown pada antarmuka pencarian frontend.
+}
+
+\filebox{backend/models/support.model.js}{Model Layanan Bantuan (Support Messages)}
+{
+Mengelola tiket komunikasi pelanggan pada tabel \texttt{support\_messages}. Menyediakan fungsi \texttt{create} (pengajuan tiket baru oleh user), \texttt{findByUserId} (membaca riwayat kendala pribadi user), \texttt{findAll} (menampilkan seluruh tiket komplain untuk admin), \texttt{update} (admin memberikan balasan jawaban dan mengubah status tiket menjadi \textit{resolved}), serta \texttt{delete}.
+}
+{
+Dipanggil oleh \texttt{controllers/support.controller.js}. Menghubungkan pelapor ke entitas user.
+}
+
+\subsection{Subdirektori Controller Backend (\texttt{backend/controllers/})}
+\folderbox{backend/controllers/}{Pusat kendali logika bisnis aplikasi yang memvalidasi input HTTP dan mengembalikan JSON.}
+
+\filebox{backend/controllers/auth.controller.js}{Pengendali Autentikasi \& Profil Akun}
+{
+Mengelola 4 operasi vital:
+\begin{enumerate}[leftmargin=*]
+    \item \texttt{register}: Memvalidasi keberadaan nama, email, nomor telepon, dan password. Memeriksa keunikan email via model user. Mengenkrpsi password dengan salt rounds 10 via \texttt{bcryptjs}. Menyimpan akun baru dan langsung menghasilkan token JWT aktif berumur 24 jam.
+    \item \texttt{login}: Memeriksa kecocokan email dan mencocokkan kata sandi menggunakan \texttt{bcrypt.compare()}. Jika cocok, membuat token JWT yang memuat identitas \texttt{\{ id, name, role \}} untuk dikembalikan ke browser klien.
+    \item \texttt{getProfile}: Membaca data lengkap akun pengguna yang sedang login berdasarkan \texttt{req.user.id}.
+    \item \texttt{updateProfile}: Menyimpan pembaruan data diri (nama, telepon, keahlian, bio) ke basis data.
+\end{enumerate}
+}
+{
+Menggunakan \texttt{models/user.model.js}. Dipanggil oleh rute di \texttt{routes/auth.routes.js}.
+}
+
+\filebox{backend/controllers/job.controller.js}{Pengendali Katalog Lowongan Kerja}
+{
+Menyediakan method \texttt{getAll} (mengambil lowongan dengan filter query), \texttt{getById} (mengambil detail lengkap satu lowongan), \texttt{create} (menambah lowongan baru dengan validasi role admin), \texttt{update} (mengubah kualifikasi/gaji lowongan), dan \texttt{delete} (menghapus lowongan).
+}
+{
+Menggunakan \texttt{models/job.model.js}. Dipanggil oleh rute di \texttt{routes/job.routes.js}.
+}
+
+\filebox{backend/controllers/company.controller.js}{Pengendali Profil Perusahaan Mitra}
+{
+Mengelola operasi CRUD data perusahaan mitra (\texttt{getAll}, \texttt{getById}, \texttt{create}, \texttt{update}, \texttt{delete}). Operasi modifikasi data diproteksi ketat hanya untuk admin.
+}
+{
+Menggunakan \texttt{models/company.model.js}. Dipanggil oleh rute di \texttt{routes/company.routes.js}.
+}
+
+\newpage
+
+\filebox{backend/controllers/course.controller.js}{Pengendali Katalog Kursus Online}
+{
+Menyediakan method \texttt{getAll} (mengambil seluruh kursus aktif beserta filter tingkat dan kategori), \texttt{getById} (mengambil detail kursus dan silabus), \texttt{create} (penambahan materi kursus baru oleh admin), \texttt{update} (pembaruan harga, deskripsi, atau durasi), dan \texttt{delete}.
+}
+{
+Menggunakan \texttt{models/course.model.js}. Dipanggil oleh rute di \texttt{routes/course.routes.js}.
+}
+
+\filebox{backend/controllers/application.controller.js}{Pengendali Alur Pelamaran Kerja}
+{
+Mengimplementasikan logika bisnis pelamaran kerja:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{getAll}: Secara cerdas memeriksa role user. Jika \texttt{role === 'admin'}, mengembalikan seluruh lamaran masuk dari seluruh pelamar. Jika role adalah user biasa, hanya mengembalikan berkas lamaran milik akun yang sedang login.
+    \item \texttt{create}: Mencegah pelamar melamar dua kali pada lowongan yang sama menggunakan \texttt{checkExisting}. Menyimpan surat lamaran (\textit{cover letter}) dan URL resume.
+    \item \texttt{update}: Mengubah status lamaran (\textit{pending, reviewed, accepted, rejected}) yang dikhususkan bagi admin setelah menerima konfirmasi dari HRD mitra.
+    \item \texttt{delete}: Membatalkan pengajuan lamaran dengan memastikan kepemilikan akun.
+\end{itemize}
+}
+{
+Menggunakan \texttt{models/application.model.js}. Dipanggil oleh rute di \texttt{routes/application.routes.js}.
+}
+
+\filebox{backend/controllers/enrollment.controller.js}{Pengendali Pendaftaran \& Progres Kursus}
+{
+Mengelola proses pendaftaran kelas pengguna (\texttt{create}) dengan validasi agar user tidak mendaftar dua kali di kelas yang sama. Menyediakan fungsi \texttt{getAll} untuk melihat kelas yang sedang dipelajari, fungsi \texttt{update} untuk memperbarui persentase progres belajar dari antarmuka, serta fungsi \texttt{delete} untuk membatalkan kelas.
+}
+{
+Menggunakan \texttt{models/enrollment.model.js}. Dipanggil oleh rute di \texttt{routes/enrollment.routes.js}.
+}
+
+\filebox{backend/controllers/category.controller.js}{Pengendali Kategori Sistem}
+{
+Menyediakan method \texttt{getJobCategories} dan \texttt{getCourseCategories} yang mengembalikan daftar kategori dalam format array JSON siap pakai untuk merender opsi filter pada antarmuka klien.
+}
+{
+Menggunakan \texttt{models/category.model.js}. Dipanggil oleh rute di \texttt{routes/category.routes.js}.
+}
+
+\filebox{backend/controllers/support.controller.js}{Pengendali Tiket Bantuan Pelanggan}
+{
+Mengelola komunikasi layanan pelanggan: \texttt{getAll} (mengambil tiket kendala milik user atau seluruh tiket jika admin), \texttt{create} (pengiriman tiket baru), \texttt{update} (admin menuliskan respon pemecahan masalah dan menutup status tiket), serta \texttt{delete}.
+}
+{
+Menggunakan \texttt{models/support.model.js}. Dipanggil oleh rute di \texttt{routes/support.routes.js}.
+}
+
+\filebox{backend/controllers/dashboard.controller.js}{Pengendali Statistik Ringkasan Sistem}
+{
+Fungsi \texttt{getStats} mengeksekusi kueri agregasi \texttt{COUNT(*)} secara simultan dari tabel \texttt{jobs}, \texttt{courses}, \texttt{users}, dan \texttt{job\_applications}. Mengembalikan total angka statistik riil untuk ditampilkan pada komponen kartu metrik beranda web.
+}
+{
+Mengakses koneksi database langsung secara ringkas. Dipanggil oleh \texttt{routes/dashboard.routes.js}.
+}
+
+\newpage
+
+\subsection{Subdirektori Routing Backend (\texttt{backend/routes/})}
+\folderbox{backend/routes/}{Mendefinisikan pemetaan endpoint URL ke controller serta memasang middleware otentikasi.}
+
+\filebox{backend/routes/index.js}{Master Router Aggregator}
+{
+Menginstansiasi \texttt{express.Router()} utama dan me-mount seluruh modul rute anak ke bawah path spesifik:
+\texttt{/auth} $\rightarrow$ \texttt{auth.routes}, \texttt{/jobs} $\rightarrow$ \texttt{job.routes}, \texttt{/companies} $\rightarrow$ \texttt{company.routes}, \texttt{/courses} $\rightarrow$ \texttt{course.routes}, \texttt{/applications} $\rightarrow$ \texttt{application.routes}, \texttt{/enrollments} $\rightarrow$ \texttt{enrollment.routes}, \texttt{/categories} $\rightarrow$ \texttt{category.routes}, \texttt{/support} $\rightarrow$ \texttt{support.routes}, dan \texttt{/dashboard} $\rightarrow$ \texttt{dashboard.routes}.
+}
+{
+Diimpor langsung oleh \texttt{backend/server.js} pada baris \texttt{app.use('/api', require('./routes'))}.
+}
+
+\filebox{backend/routes/*.routes.js (9 Berkas Sub-Rute)}{Pemetaan Rute HTTP Per Modul}
+{
+Setiap berkas menghubungkan HTTP Verb spesifik ke fungsi controller yang bersesuaian serta menyematkan middleware pelindung:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{auth.routes.js}: \texttt{POST /register}, \texttt{POST /login}, \texttt{GET /profile} (\textit{verifyToken}), \texttt{PUT /profile} (\textit{verifyToken}).
+    \item \texttt{job.routes.js}: \texttt{GET /}, \texttt{GET /:id}, \texttt{POST /} (\textit{verifyToken, isAdmin}), \texttt{PUT /:id} (\textit{verifyToken, isAdmin}), \texttt{DELETE /:id} (\textit{verifyToken, isAdmin}).
+    \item \texttt{company.routes.js}: \texttt{GET /}, \texttt{GET /:id}, \texttt{POST /}, \texttt{PUT /:id}, \texttt{DELETE /:id} (\textit{isAdmin}).
+    \item \texttt{course.routes.js}: \texttt{GET /}, \texttt{GET /:id}, \texttt{POST /}, \texttt{PUT /:id}, \texttt{DELETE /:id} (\textit{isAdmin}).
+    \item \texttt{application.routes.js}: \texttt{GET /}, \texttt{POST /}, \texttt{PUT /:id}, \texttt{DELETE /:id} (semua dilindungi \textit{verifyToken}).
+    \item \texttt{enrollment.routes.js}: \texttt{GET /}, \texttt{POST /}, \texttt{PUT /:id}, \texttt{DELETE /:id} (semua dilindungi \textit{verifyToken}).
+    \item \texttt{category.routes.js}: \texttt{GET /jobs}, \texttt{GET /courses} (akses publik).
+    \item \texttt{support.routes.js}: \texttt{GET /}, \texttt{POST /}, \texttt{PUT /:id}, \texttt{DELETE /:id} (dilindungi \textit{verifyToken}).
+    \item \texttt{dashboard.routes.js}: \texttt{GET /} (akses publik statistik sistem).
+\end{itemize}
+}
+{
+Diimpor dan digabungkan oleh berkas \texttt{backend/routes/index.js}.
+}
+
+\newpage
+
+% ==================== BAB 4 ====================
+\section{Bedah Direktori Frontend (\texttt{frontend/})}
+
+Direktori \texttt{frontend/} menyusun seluruh antarmuka pengguna (\textit{User Interface}) berbasis teknologi standar web modern murni: HTML5 semantik, CSS3 Glassmorphism, dan Vanilla JavaScript ES6+.
+
+\subsection{Landing Page Publik \& Komponen Bersama}
+
+\filebox{frontend/index.html}{Landing Page Utama (Canva Begin Page)}
+{
+Halaman penyambutan publik yang merepresentasikan layar \textit{Begin Page} pada prototipe Canva. Memuat latar belakang gelap dengan animasi lingkaran cahaya melayang (\textit{floating orbs}), judul brand bergradien ungu-ke-biru (\textit{LearnHire}), tagline inspiratif, tombol ajakan \textit{"Mulai Sekarang"} yang mengarahkan ke formulir masuk, kartu sorotan 3 fitur utama (Lowongan Kerja, Kursus Online, dan CV Builder), counter metrik statistik dinamis dari API, serta footer hak cipta. Halaman ini juga memiliki skrip pemeriksa status: jika user telah memiliki sesi login aktif, otomatis dialihkan langsung ke dashboard \texttt{home.html}.
+}
+{
+Memuat berkas \texttt{assets/css/style.css} dan pustaka klien \texttt{api.js}, \texttt{auth.js}, serta \texttt{app.js}.
+}
+
+\filebox{frontend/components/sidebar.html}{Komponen Navigasi Samping Responsif}
+{
+Komponen bilah navigasi yang diinjeksi secara dinamis ke seluruh halaman privat. Memuat logo brand LearnHire, daftar navigasi utama berikon Font Awesome (Beranda, Lowongan Kerja, Kursus Online, Lamaran Saya, Kursus Saya, Profil, Bantuan), serta bagian footer profil yang menampilkan avatar inisial, nama pengguna, lencana status peran (\textbf{[ADMIN]} warna oranye atau \textbf{[USER]} warna biru), dan tombol keluar (\textit{Logout}).
+}
+{
+Dimuat secara asinkron oleh fungsi \texttt{app.loadSidebar()} yang berada di \texttt{assets/js/app.js}.
+}
+
+\subsection{Pusat Gaya Antarmuka (\texttt{frontend/assets/css/})}
+\folderbox{frontend/assets/css/}{Pengelolaan tata letak visual, tema warna, dan responsivitas.}
+
+\filebox{frontend/assets/css/style.css}{Pusat Desain Dark Glassmorphism}
+{
+Berkas CSS menyeluruh yang mengimplementasikan identitas visual LearnHire:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Palette Warna:} Latar belakang utama (\texttt{--primary-bg: \#0a0e27}), sekunder (\texttt{--secondary-bg: \#1a1f4e}), kartu kaca transparan (\texttt{--card-bg: rgba(255,255,255,0.05)}), aksen gradien (\texttt{\#7c3aed} ke \texttt{\#3b82f6}), teks utama putih, dan teks sekunder abu-abu (\texttt{\#94a3b8}).
+    \item \textbf{Efek Kaca (Glassmorphism):} Menggunakan properti \texttt{backdrop-filter: blur(10px)} dan border semi-transparan untuk menciptakan kedalaman visual modern.
+    \item \textbf{Elemen Orbs Melayang:} Mendefinisikan animasi CSS \texttt{@keyframes float} yang menggerakkan lingkaran blur berwarna ungu dan biru di latar belakang secara halus.
+    \item \textbf{Sistem Grid \& Responsivitas:} Mendefinisikan class \texttt{.grid-2}, \texttt{.grid-3}, dan \texttt{.stats-grid}. Pada layar desktop ($>1024$px), sidebar berukuran tetap 260px; pada tablet ($\le 1024$px), sidebar mengecil secara elegan; dan pada ponsel ($\le 768$px), sidebar tersembunyi dengan tombol pemicu hamburger menu di bar atas.
+    \item \textbf{Komponen UI Mandiri:} Tombol gradien, input form dengan ikon dan glow fokus, status badge warna-warni, jendela modal, toast notifikasi animasi slide-in, dan indikator loading spinner.
+\end{itemize}
+}
+{
+Diimpor di bagian \texttt{<head>} oleh seluruh 11 halaman HTML di dalam proyek LearnHire.
+}
+
+\newpage
+
+\subsection{Pustaka JavaScript Klien Bersama (\texttt{frontend/assets/js/})}
+\folderbox{frontend/assets/js/}{Modul-modul utilitas logika klien yang digunakan lintas halaman.}
+
+\filebox{frontend/assets/js/api.js}{Pustaka Komunikasi Fetch API Terpusat}
+{
+Menyediakan objek global \texttt{api} dengan method pembungkus HTTP: \texttt{api.get()}, \texttt{api.post()}, \texttt{api.put()}, dan \texttt{api.delete()}. Berkas ini membaca token otentikasi dari \texttt{auth.getToken()} dan otomatis membubuhkannya pada header \texttt{Authorization: Bearer <token>}. Jika server mengembalikan HTTP 401 (\textit{Unauthorized}), berkas ini otomatis menghapus sesi lokal dan mengalihkan halaman ke formulir login.
+}
+{
+Menjadi jalur komunikasi tunggal bagi seluruh berkas skrip di folder \texttt{assets/js/pages/}.
+}
+
+\filebox{frontend/assets/js/auth.js}{Manajer Sesi Autentikasi Pengguna}
+{
+Mengelola penyimpanan token JWT di \texttt{localStorage}. Menyediakan fungsi:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{getToken()} \& \texttt{setToken(token)}: Mengakses dan menyimpan string token JWT.
+    \item \texttt{isLoggedIn()}: Mengembalikan nilai boolean apakah sesi aktif tersedia.
+    \item \texttt{checkAuth()}: Pelindung halaman privat; jika belum login, otomatis me-redirect ke \texttt{login.html}.
+    \item \texttt{checkGuest()}: Pelindung halaman login/register; jika sudah login, otomatis me-redirect ke \texttt{home.html}.
+    \item \texttt{logout()}: Menghapus token dari memori browser dan mengarahkan kembali ke landing page \texttt{index.html}.
+    \item \texttt{parseJwt(token)} \& \texttt{getUser()}: Mendekode bagian payload JWT secara aman untuk membaca nama dan peran pengguna di sisi klien tanpa perlu memanggil server.
+\end{itemize}
+}
+{
+Dipanggil pada baris awal setiap skrip halaman privat untuk menjamin otentikasi pengguna.
+}
+
+\filebox{frontend/assets/js/app.js}{Pustaka Utilitas Antarmuka Global}
+{
+Menyediakan fungsi pendukung pengalaman pengguna:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{showNotification(message, type)}: Menghasilkan pesan toast melayang animasi di pojok layar dengan opsi warna (sukses, galat, peringatan, info).
+    \item \texttt{formatCurrency(amount)}: Mengonversi angka ke format Rupiah baku (contoh: \texttt{Rp 10.000.000}).
+    \item \texttt{formatDate(dateString)}: Mengonversi format ISO timestamp ke penanggalan berbahasa Indonesia.
+    \item \texttt{loadSidebar()}: Memuat komponen \texttt{sidebar.html}, menandai link aktif sesuai halaman saat ini, dan memasang event listener hamburger menu.
+    \item \texttt{updateUserInfo()}: Menampilkan nama user di sidebar, membuat inisial avatar, serta menampilkan lencana peran secara akurat (\textbf{[ADMIN]} oranye atau \textbf{[USER]} biru).
+    \item \texttt{showLoading()} \& \texttt{showEmptyState()}: Menampilkan animasi spinner saat data sedang diambil dan tampilan state kosong jika tidak ada data yang ditemukan.
+\end{itemize}
+}
+{
+Dijalankan pada saat event \texttt{DOMContentLoaded} aktif di setiap halaman aplikasi.
+}
+
+\newpage
+
+\subsection{Halaman Web Modular (\texttt{frontend/pages/})}
+\folderbox{frontend/pages/}{Kumpulan berkas tampilan HTML untuk setiap fungsionalitas sistem.}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{\texttt{login.html}:} Halaman formulir masuk terpusat. Digunakan bersama baik oleh Administrator maupun Pelamar Kerja. Menyediakan input email dan kata sandi dengan ikon penjelas.
+    \item \textbf{\texttt{register.html}:} Halaman pendaftaran akun pencari kerja baru. Memuat kolom input Nama Lengkap, Alamat Email, Nomor Telepon, Kata Sandi, dan Konfirmasi Kata Sandi.
+    \item \textbf{\texttt{home.html}:} Halaman beranda utama pengguna terautentikasi. Menyajikan salam personal (\textit{"Selamat Datang, [Nama]!"}), 4 kartu metrik statistik (Total Jobs, Total Courses, Lamaran Saya, Kursus Saya), serta carousel cuplikan lowongan pekerjaan dan kursus pelatihan terpopuler.
+    \item \textbf{\texttt{jobs.html}:} Halaman eksplorasi lowongan pekerjaan. Dilengkapi kartu filter pencarian posisi dan dropdown pemilihan kategori industri yang terisi secara dinamis dari API.
+    \item \textbf{\texttt{job-detail.html}:} Halaman detail lowongan pekerjaan tertentu. Menyajikan logo dan profil perusahaan mitra, kisaran gaji, lokasi kerja, deskripsi pekerjaan, daftar persyaratan, tombol kirim berkas, serta jendela modal formulir surat lamaran (\textit{cover letter}).
+    \item \textbf{\texttt{courses.html}:} Halaman katalog pelatihan kursus online. Menyajikan kartu-kartu materi keahlian lengkap dengan foto modul, instruktur pengajar, tingkat kesulitan (\textit{Beginner, Intermediate, Advanced}), durasi pembelajaran, rating kepuasan bintang, dan jumlah peserta terdaftar.
+    \item \textbf{\texttt{course-detail.html}:} Halaman rincian silabus kursus. Menyediakan penjelasan kompetensi yang akan dicapai, rincian bab silabus belajar, tombol konfirmasi pendaftaran kelas, serta otomatis menampilkan bilah progres belajar jika pengguna telah terdaftar di kelas tersebut.
+    \item \textbf{\texttt{applications.html}:} Halaman pemantauan riwayat lamaran kerja pengguna. Menampilkan tabel berisi posisi pekerjaan, nama instansi mitra, tanggal pengajuan, status seleksi berwarna (\textit{Pending, Reviewed, Accepted, Rejected}), serta tombol pembatalan berkas lamaran.
+    \item \textbf{\texttt{my-courses.html}:} Halaman kursus aktif yang sedang diikuti pengguna. Dilengkapi bilah progres persentase belajar (\textit{progress bar}) dan tombol interaktif \textit{"Lanjutkan Belajar (+25\%)"} yang langsung memperbarui capaian belajar ke basis data MySQL hingga tuntas 100\%.
+    \item \textbf{\texttt{profile.html}:} Halaman pengelolaan profil diri. Menampilkan kartu identitas visual dengan lencana peran (\textit{Administrator} atau \textit{Pencari Kerja}), serta formulir pengubahan nama lengkap, nomor telepon, daftar keahlian kompetensi, dan bio ringkas.
+    \item \textbf{\texttt{support.html}:} Halaman pusat layanan bantuan pengguna (Customer Service). Menampilkan riwayat tiket pertanyaan kendala, status penanganan tiket (\textit{Terbuka, Sedang Diproses, Selesai Dijawab}), balasan solusi dari tim admin, serta tombol pemicu modal pengajuan tiket bantuan baru.
+\end{enumerate}
+
+\subsection{Skrip Klien Per Halaman (\texttt{frontend/assets/js/pages/})}
+\folderbox{frontend/assets/js/pages/}{Skrip JavaScript modular yang menangani event, pemanggilan API, dan manipulasi DOM per halaman.}
+
+Setiap berkas JavaScript pada folder ini terhubung secara eksklusif ke halaman HTML yang bersesuaian:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{\texttt{login.js}:} Mencegah form reload (\texttt{e.preventDefault()}), memvalidasi kelengkapan isian, memanggil endpoint \texttt{api.post('/auth/login', ...)}, menyimpan token ke \texttt{localStorage} via \texttt{auth.setToken()}, memunculkan toast sukses, dan mengarahkan pengguna ke \texttt{home.html}.
+    \item \textbf{\texttt{register.js}:} Memvalidasi kesamaan kata sandi dan konfirmasi kata sandi, memeriksa panjang karakter minimum, memanggil endpoint \texttt{api.post('/auth/register', ...)}, memunculkan notifikasi keberhasilan, dan mengarahkan ke halaman login.
+    \item \textbf{\texttt{home.js}:} Memanggil endpoint agregat \texttt{/dashboard} untuk statistik global, endpoint \texttt{/applications} dan \texttt{/enrollments} untuk menghitung total lamaran dan kursus pribadi user, serta mengambil cuplikan 3 loker dan kursus teratas via \texttt{/jobs} dan \texttt{/courses}.
+    \item \textbf{\texttt{jobs.js}:} Memanggil endpoint kategori \texttt{/categories/jobs} untuk merender dropdown opsi, lalu mengeksekusi pemanggilan \texttt{/jobs?search=...\&category\_id=...} berdasarkan filter yang diinputkan pengguna.
+    \item \textbf{\texttt{job-detail.js}:} Membaca parameter ID dari query string URL (\texttt{?id=X}), memanggil \texttt{/jobs/:id}, memeriksa apakah lowongan sudah pernah dilamar oleh pengguna aktif, mengatur pembukaan modal lamaran, dan mengeksekusi pengiriman berkas ke endpoint \texttt{POST /applications}.
+    \item \textbf{\texttt{courses.js}:} Mengambil daftar kategori kursus via \texttt{/categories/courses} dan merender kartu-kartu materi kursus dari endpoint \texttt{/courses} dengan filter dinamis.
+    \item \textbf{\texttt{course-detail.js}:} Mengambil data rincian kelas via \texttt{/courses/:id}, memeriksa kepemilikan kelas via \texttt{/enrollments}, mengatur jendela modal konfirmasi pendaftaran, dan memicu pendaftaran kelas ke \texttt{POST /enrollments}.
+    \item \textbf{\texttt{applications.js}:} Mengambil daftar lamaran aktif pengguna dari endpoint \texttt{GET /applications}, merender lencana status warna (\textit{badge-pending, badge-info, badge-active, badge-rejected}), serta menangani tombol pembatalan lamaran yang memanggil endpoint \texttt{DELETE /applications/:id}.
+    \item \textbf{\texttt{my-courses.js}:} Membaca kelas aktif dari \texttt{GET /enrollments}, menghitung lebar bilah progres CSS, dan menangani event klik tombol progres yang mengeksekusi kueri \texttt{PUT /enrollments/:id} dengan kenaikan progres +25\% hingga status tuntas \textit{completed}.
+    \item \textbf{\texttt{profile.js}:} Mengambil data profil mutakhir pengguna dari endpoint \texttt{GET /auth/profile}, mengisi nilai formulir, mengatur lencana status akun, serta mengeksekusi pembaruan profil ke endpoint \texttt{PUT /auth/profile}.
+    \item \textbf{\texttt{support.js}:} Mengambil riwayat tiket bantuan dari endpoint \texttt{GET /support}, menampilkan tanggapan resmi dari tim admin, mengatur pembukaan modal pembuatan tiket baru (\texttt{POST /support}), serta menangani penghapusan tiket (\texttt{DELETE /support/:id}).
+\end{itemize}
+
+\newpage
+
+% ==================== BAB 5 ====================
+\section{Matriks Tabel Basis Data Relasional (\texttt{learnhire\_db})}
+
+Berikut adalah rincian 9 tabel relasional yang menyusun basis data aplikasi LearnHire:
+
+\begin{table}[h!]
+\centering
+\footnotesize
+\begin{tabular}{p{2.5cm} p{3.8cm} p{3.8cm} p{5.5cm}}
+\toprule
+\textbf{Nama Tabel} & \textbf{Kolom-Kolom Kunci} & \textbf{Integritas Relasi} & \textbf{Deskripsi Fungsional} \\
+\midrule
+\texttt{users} & \texttt{id, name, email, password, phone, role} & \texttt{PRIMARY KEY (id)}, \texttt{UNIQUE (email)} & Menyimpan akun pengguna dan administrator dengan kata sandi ter-hash Bcrypt. \\
+\addlinespace
+\texttt{companies} & \texttt{id, name, logo, location, website} & \texttt{PRIMARY KEY (id)} & Profil institusi atau perusahaan mitra penyedia lowongan pekerjaan resmi. \\
+\addlinespace
+\texttt{job\_categories} & \texttt{id, name, icon} & \texttt{PRIMARY KEY (id)} & Klasifikasi bidang industri pekerjaan (Teknologi, Desain, Keuangan, Marketing). \\
+\addlinespace
+\texttt{jobs} & \texttt{id, company\_id, category\_id, title, salary\_min, type} & \texttt{PRIMARY KEY (id)}, \texttt{FK(company\_id)}, \texttt{FK(category\_id)} & Katalog lowongan pekerjaan aktif milik perusahaan mitra. \\
+\addlinespace
+\texttt{job\_applications} & \texttt{id, user\_id, job\_id, cover\_letter, status} & \texttt{PRIMARY KEY (id)}, \texttt{FK(user\_id)}, \texttt{FK(job\_id)}, \texttt{UNIQUE(user\_id, job\_id)} & Transaksi pelamaran kerja. Kunci unik mencegah duplikasi pengajuan berkas. \\
+\addlinespace
+\texttt{course\_categories} & \texttt{id, name, icon} & \texttt{PRIMARY KEY (id)} & Bidang keilmuan kursus (Programming, UI/UX, Data Science, Bisnis). \\
+\addlinespace
+\texttt{courses} & \texttt{id, category\_id, title, instructor, duration, price} & \texttt{PRIMARY KEY (id)}, \texttt{FK(category\_id)} & Katalog kursus pelatihan keahlian yang dapat diikuti secara terstruktur. \\
+\addlinespace
+\texttt{course\_enrollments} & \texttt{id, user\_id, course\_id, progress, status} & \texttt{PRIMARY KEY (id)}, \texttt{FK(user\_id)}, \texttt{FK(course\_id)}, \texttt{UNIQUE(user\_id, course\_id)} & Pelacakan kelas yang diikuti pengguna beserta persentase kelulusan (0-100\%). \\
+\addlinespace
+\texttt{support\_messages} & \texttt{id, user\_id, subject, message, reply, status} & \texttt{PRIMARY KEY (id)}, \texttt{FK(user\_id)} & Komunikasi bantuan teknis dua arah antara pengguna dan administrator. \\
+\bottomrule
+\end{tabular}
+\caption{Struktur Relasional 9 Tabel Basis Data \texttt{learnhire\_db}}
+\end{table}
+
+\newpage
+
+% ==================== BAB 6 ====================
+\section{Panduan Pengoperasian \& Akun Pengujian}
+
+\subsection{Kredensial Akun Demonstrasi Bawaan}
+Untuk memfasilitasi pengujian alur seleksi dan perbedaan hak akses antara Admin dan User reguler, gunakan kredensial bawaan berikut:
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{2.8cm} p{4.2cm} p{2.2cm} p{6.4cm}}
+\toprule
+\textbf{Peran Akun} & \textbf{Alamat Email} & \textbf{Kata Sandi} & \textbf{Hak Akses \& Batasan Fungsional} \\
+\midrule
+\textbf{Administrator} & \texttt{admin@learnhire.com} & \texttt{admin123} & Hak akses superuser: dapat melihat seluruh lamaran masuk dari semua pelamar, mengelola CUD lowongan dan kursus, serta membalas tiket bantuan. \\
+\addlinespace
+\textbf{Pencari Kerja} & \texttt{budi@example.com} & \texttt{user123} & Pengguna reguler: telah memiliki riwayat pengajuan lamaran pekerjaan dan keikutsertaan kelas aktif untuk demonstrasi alur belajar. \\
+\addlinespace
+\textbf{Pencari Kerja} & \texttt{sari@example.com} & \texttt{user123} & Akun alternatif: untuk menguji simulasi pendaftaran kursus baru dan pengajuan tiket bantuan teknis mandiri. \\
+\bottomrule
+\end{tabular}
+\caption{Daftar Akun Pengujian Bawaan Sistem}
+\end{table}
+
+\subsection{Prosedur Menjalankan Sistem Secara Mandiri}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Menjalankan Layanan Basis Data (XAMPP):}
+    Buka XAMPP Control Panel, pastikan modul \textbf{Apache} (port 80) dan \textbf{MySQL} (port 3306) telah berada pada status \textit{Running}.
+    \item \textbf{Verifikasi phpMyAdmin:}
+    Buka peramban web pada alamat \texttt{http://localhost/phpmyadmin/}. Pastikan database \texttt{learnhire\_db} telah terbuat beserta 9 tabel relasionalnya. Jika belum, impor berkas \texttt{database/database.sql}.
+    \item \textbf{Menjalankan Server Backend Express:}
+    Buka terminal (PowerShell atau Command Prompt) pada direktori backend:
+    \begin{lstlisting}[language=bash]
+cd "c:\Users\M S I\OneDrive - Institut Teknologi Sepuluh Nopember\Documents\ANTIGRAVITY\learnhire\backend"
+npm run dev
+    \end{lstlisting}
+    Server akan aktif dan siap menerima panggilan API pada alamat \texttt{http://localhost:3000/api}.
+    \item \textbf{Mengakses Antarmuka Web:}
+    Akses tautan \texttt{http://localhost:3000} pada browser untuk masuk ke Landing Page, atau buka \texttt{http://localhost:3000/pages/login.html} untuk login menggunakan akun demonstrasi di atas.
+\end{enumerate}
+
+\vspace{1cm}
+\noindent\rule{\linewidth}{0.5pt}\\[0.2cm]
+\noindent\textit{\small Dokumen ini disusun secara terperinci untuk mendokumentasikan setiap berkas dan direktori yang ada pada project LearnHire secara transparan dan terverifikasi.}
+
+\end{document}

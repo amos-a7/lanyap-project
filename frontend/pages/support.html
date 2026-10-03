@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantuan & Dukungan - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+            <div class="mobile-topbar mb-3">
+                <div class="brand text-gradient">LearnHire</div>
+                <button class="btn btn-outline" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="d-flex justify-between align-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h2 class="mb-1">Bantuan & Dukungan</h2>
+                    <p class="text-secondary">Hubungi tim customer service kami jika ada kendala.</p>
+                </div>
+                <button class="btn btn-primary" id="btn-new-ticket"><i class="fas fa-plus"></i> Kirim Pesan Baru</button>
+            </div>
+
+            <div id="tickets-container" class="grid-2">
+                <!-- Loaded via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Ticket Modal -->
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content card">
+            <h3 class="mb-3">Kirim Pesan Baru</h3>
+            <form id="ticket-form">
+                <div class="form-group">
+                    <label class="form-label">Subjek</label>
+                    <input type="text" id="subject" class="form-control" style="padding-left: 1rem;" required placeholder="Contoh: Kendala saat login">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Pesan</label>
+                    <textarea id="message" class="form-control" rows="5" style="padding-left: 1rem;" required placeholder="Jelaskan masalah Anda secara detail..."></textarea>
+                </div>
+                <div class="d-flex gap-2 justify-end">
+                    <button type="button" class="btn btn-outline" id="btn-close-modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-ticket">Kirim Pesan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/support.js"></script>
+</body>
+</html>

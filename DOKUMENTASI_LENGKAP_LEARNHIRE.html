@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dokumentasi Lengkap Struktur dan File Project LearnHire</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 15mm 18mm 15mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      font-size: 10pt;
+      background: #ffffff;
+    }
+
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .avoid-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Cover Page */
+    .cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 20px;
+      page-break-after: always;
+      border: 2px solid #3b82f6;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+    }
+
+    .cover-header {
+      border-bottom: 3px solid #3b82f6;
+      padding-bottom: 20px;
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .cover-meta {
+      background: white;
+      padding: 24px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    .cover-meta table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cover-meta td {
+      padding: 6px 10px;
+      font-size: 10pt;
+    }
+
+    .cover-meta td.label {
+      font-weight: 600;
+      color: #64748b;
+      width: 35%;
+    }
+
+    .cover-meta td.value {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cover-footer {
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 15px;
+    }
+
+    /* Content Typography */
+    h1 {
+      font-size: 18pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 25px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      font-size: 9pt;
+    }
+
+    table.data-table th {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid #1e293b;
+    }
+
+    table.data-table td {
+      padding: 7px 10px;
+      border: 1px solid #cbd5e1;
+      vertical-align: top;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code & Tree */
+    pre, code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    pre.tree-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 8.5pt;
+      line-height: 1.45;
+      margin: 12px 0 16px 0;
+      overflow-x: hidden;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-dark { background: #e2e8f0; color: #0f172a; }
+
+    .callout {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 12px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 12px 0 16px 0;
+      font-size: 9pt;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 4px;
+    }
+
+    .file-item {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .file-item:last-child {
+      border-bottom: none;
+    }
+
+    .file-title {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 9.5pt;
+    }
+
+    .file-desc {
+      font-size: 9pt;
+      color: #475569;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="cover-header">
+      <div class="cover-tag">Laporan Dokumentasi Teknis Sistem</div>
+      <h1 class="cover-title">LearnHire</h1>
+      <p class="cover-subtitle">Platform Aplikasi Lowongan Pekerjaan dan Kursus Online Terpadu Berbasis Full-Stack Web Architecture</p>
+    </div>
+
+    <div class="cover-meta">
+      <table>
+        <tr>
+          <td class="label">Mata Kuliah:</td>
+          <td class="value">Desain dan Rekayasa Sistem (DRS) B</td>
+        </tr>
+        <tr>
+          <td class="label">Departemen:</td>
+          <td class="value">Teknik Komputer - FTEIC</td>
+        </tr>
+        <tr>
+          <td class="label">Institusi:</td>
+          <td class="value">Institut Teknologi Sepuluh Nopember (ITS)</td>
+        </tr>
+        <tr>
+          <td class="label">Dosen Pengampu:</td>
+          <td class="value">Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.</td>
+        </tr>
+        <tr>
+          <td class="label">Teknologi Backend:</td>
+          <td class="value">Node.js (v20), Express.js, JWT, Bcryptjs, Helmet, CORS</td>
+        </tr>
+        <tr>
+          <td class="label">Teknologi Database:</td>
+          <td class="value">MySQL / MariaDB (XAMPP Port 3306), phpMyAdmin</td>
+        </tr>
+        <tr>
+          <td class="label">Teknologi Frontend:</td>
+          <td class="value">HTML5, CSS3 Glassmorphism, Vanilla JavaScript ES6+</td>
+        </tr>
+        <tr>
+          <td class="label">Tanggal Rilis:</td>
+          <td class="value">Oktober 2026</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="cover-footer">
+      Dokumentasi ini menjelaskan secara komprehensif struktur 65 berkas, arsitektur data, alur bisnis, relasi tabel database, dan implementasi kode project LearnHire.
+    </div>
+  </div>
+
+  <!-- SECTION 1: RINGKASAN EKSEKUTIF & KONSEP BISNIS -->
+  <h1>1. Konsep & Arsitektur Sistem LearnHire</h1>
+  
+  <p><strong>LearnHire</strong> adalah platform web full-stack terintegrasi yang menggabungkan dua ekosistem krusial: <em>portal lowongan pekerjaan (Job Board)</em> dan <em>portal pelatihan keterampilan (Course LMS)</em>. Platform ini dirancang untuk menjawab permasalahan tingginya kesenjangan keterampilan (<em>skill gap</em>) antara lulusan/pencari kerja dengan kualifikasi riil yang dibutuhkan oleh industri.</p>
+
+  <div class="callout avoid-break">
+    <div class="callout-title">Nilai Inovasi Utama ("Learn" + "Hire"):</div>
+    Di portal kerja konvensional, pelamar yang ditolak karena minim kualifikasi hanya menerima status gagal tanpa solusi. Di LearnHire, sistem menyediakan jalur pengembangan diri (<em>Talent Development</em>). Jika pelamar belum memenuhi kualifikasi suatu lowongan, platform langsung merekomendasikan kursus in-house yang relevan untuk menutup kesenjangan tersebut.
+  </div>
+
+  <h2>1.1 Alur Pelamaran: Filter Bertingkat (Two-Stage Screening)</h2>
+  <p>LearnHire menerapkan mekanisme kemitraan resmi (<em>B2B Talent Partnership</em>) dengan instansi/perusahaan tujuan. Alur seleksi di web terbagi menjadi dua tahap:</p>
+  <ol>
+    <li><strong>Tahap 1 - Administrasi & Pre-Screening (Admin Web LearnHire):</strong> Ketika pengguna melamar pekerjaan di sistem, berkas berstatus <code>pending</code>. Admin LearnHire bertindak sebagai kurator awal yang memeriksa kelengkapan berkas, format portofolio, dan kompetensi dasar. Berkas yang layak diubah statusnya menjadi <code>reviewed</code> dan diteruskan ke HRD instansi mitra.</li>
+    <li><strong>Tahap 2 - Keputusan Akhir (HRD Instansi Rekanan):</strong> HRD instansi memeriksa kandidat yang telah lolos kurasi tahap 1. Karena kuota terbatas, HRD menentukan kandidat terpilih. Admin LearnHire kemudian memperbarui status akhir menjadi <code>accepted</code> (lolos ke wawancara/tahap lanjutan) atau <code>rejected</code> (tidak terpilih).</li>
+  </ol>
+
+  <h2>1.2 Arsitektur Aliran Data (Clean Architecture)</h2>
+  <p>Sistem dibangun dengan prinsip pemisahan tanggung jawab (<em>Separation of Concerns</em>). Frontend tidak pernah mengakses database MySQL secara langsung, melainkan seluruh komunikasi data wajib melalui antarmuka REST API:</p>
+  
+  <div class="avoid-break" style="background:#f1f5f9; padding: 12px; border-radius: 6px; text-align: center; font-weight: 600; font-size: 9pt; margin: 10px 0;">
+    Browser Pengguna (HTML5/CSS3/JS) &nbsp;⇄&nbsp; Fetch API &nbsp;⇄&nbsp; REST API (Express Router) &nbsp;⇄&nbsp; Controllers &nbsp;⇄&nbsp; Models &nbsp;⇄&nbsp; MySQL (Pool Connection)
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 2: POHON STRUKTUR FOLDER -->
+  <h1>2. Struktur Direktori Project (Directory Tree)</h1>
+  <p>Berikut adalah struktur lengkap seluruh folder dan berkas yang menyusun aplikasi LearnHire:</p>
+
+  <pre class="tree-box">
+learnhire/
+│
+├── .gitignore                          ← Aturan pengabaian file Git (node_modules, .env, log)
+├── README.md                           ← Dokumentasi panduan instalasi dan manual book
+│
+├── database/
+│   └── database.sql                    ← DDL & DML skema MySQL 9 tabel lengkap dengan dummy data
+│
+├── backend/
+│   ├── server.js                       ← Entry point Express server, CORS, Helmet, static serving
+│   ├── package.json                    ← Konfigurasi dependency npm backend
+│   ├── .env                            ← Variabel lingkungan aktif (Port, DB credentials, JWT secret)
+│   ├── .env.example                    ← Template variabel lingkungan
+│   │
+│   ├── config/
+│   │   └── database.js                 ← Konfigurasi MySQL2 Connection Pool dengan Async/Await
+│   │
+│   ├── middleware/
+│   │   ├── auth.middleware.js          ← JWT verifier (verifyToken, optionalAuth, isAdmin guard)
+│   │   └── error.middleware.js         ← Centralized error handler (404 notFound & 500 errorHandler)
+│   │
+│   ├── models/                         ← Layer abstraksi query database SQL (Prepared Statements)
+│   │   ├── user.model.js               ← Operasi CRUD data pengguna dan hash password
+│   │   ├── job.model.js                ← Query lowongan kerja dengan JOIN companies & categories
+│   │   ├── company.model.js            ← Query data master perusahaan mitra
+│   │   ├── course.model.js             ← Query katalog kursus online beserta kategori & filter
+│   │   ├── application.model.js        ← Query data lamaran pekerjaan dan status seleksi
+│   │   ├── enrollment.model.js         ← Query pendaftaran kursus dan progress pembelajaran
+│   │   ├── category.model.js           ← Query kategori pekerjaan dan kategori kursus
+│   │   └── support.model.js            ← Query tiket layanan bantuan customer service
+│   │
+│   ├── controllers/                    ← Layer logika bisnis dan validasi HTTP Request/Response
+│   │   ├── auth.controller.js          ← Logic register, login JWT, getProfile, updateProfile
+│   │   ├── job.controller.js           ← Logic CRUD lowongan kerja
+│   │   ├── company.controller.js       ← Logic CRUD profil perusahaan
+│   │   ├── course.controller.js        ← Logic CRUD kursus online
+│   │   ├── application.controller.js   ← Logic pelamaran kerja dan seleksi berkas
+│   │   ├── enrollment.controller.js    ← Logic pendaftaran kursus dan update persentase progress
+│   │   ├── category.controller.js      ← Logic pengambilan kategori pekerjaan & kursus
+│   │   ├── support.controller.js       ← Logic pengiriman & balasan tiket bantuan pengguna
+│   │   └── dashboard.controller.js     ← Logic agregasi metrik dashboard (Jobs, Courses, Users)
+│   │
+│   ├── routes/                         ← Layer routing HTTP Express
+│   │   ├── index.js                    ← Router agregator yang menyatukan seluruh sub-route ke /api
+│   │   ├── auth.routes.js              ← Routing /api/auth
+│   │   ├── job.routes.js               ← Routing /api/jobs
+│   │   ├── company.routes.js           ← Routing /api/companies
+│   │   ├── course.routes.js            ← Routing /api/courses
+│   │   ├── application.routes.js       ← Routing /api/applications
+│   │   ├── enrollment.routes.js        ← Routing /api/enrollments
+│   │   ├── category.routes.js          ← Routing /api/categories
+│   │   ├── support.routes.js           ← Routing /api/support
+│   │   └── dashboard.routes.js         ← Routing /api/dashboard
+│   │
+│   └── docs/
+│       └── api.md                      ← Spesifikasi referensi teknis REST API endpoints
+│
+└── frontend/
+    ├── index.html                      ← Landing page publik (Begin Page Canva prototype)
+    │
+    ├── components/
+    │   └── sidebar.html                ← Komponen navigasi samping responsif + badge role
+    │
+    ├── pages/                          ← Halaman-halaman modular sistem
+    │   ├── login.html                  ← Halaman formulir masuk (User & Admin)
+    │   ├── register.html               ← Halaman formulir pendaftaran akun baru
+    │   ├── home.html                   ← Dashboard utama pengguna terautentikasi
+    │   ├── jobs.html                   ← Halaman eksplorasi lowongan pekerjaan + filter
+    │   ├── job-detail.html             ← Halaman detail pekerjaan & formulir kirim lamaran
+    │   ├── courses.html                ← Halaman katalog kursus online + filter level
+    │   ├── course-detail.html          ← Halaman detail silabus kursus & pendaftaran
+    │   ├── applications.html           ← Halaman riwayat pelamaran & tracking status
+    │   ├── my-courses.html             ← Halaman kursus aktif & tracker persentase belajar
+    │   ├── profile.html                ← Halaman kelola profil pengguna & keahlian
+    │   └── support.html                ← Halaman Customer Service / tiket bantuan pengguna
+    │
+    └── assets/
+        ├── css/
+        │   └── style.css               ← Desain antarmuka Dark Glassmorphism, Poppins, Grid
+        └── js/
+            ├── api.js                  ← Centralized fetch API helper (GET, POST, PUT, DELETE)
+            ├── auth.js                 ← Modul helper localStorage JWT, login status, logout
+            ├── app.js                  ← Shared utility (toast, sidebar loader, format mata uang)
+            └── pages/                  ← Client-side script per halaman
+                ├── login.js            ← Event handler form login & penyimpanan token
+                ├── register.js         ← Event handler registrasi akun baru
+                ├── home.js             ← Loader metrik dashboard & rekomendasi teratas
+                ├── jobs.js             ← Loader daftar lowongan dengan filter kategori dinamis
+                ├── job-detail.js       ← Loader rincian lowongan & modal submission lamaran
+                ├── courses.js          ← Loader daftar kursus dengan filter tingkatan
+                ├── course-detail.js    ← Loader rincian kursus & proses pendaftaran kelas
+                ├── applications.js     ← Loader tabel lamaran & aksi pembatalan lamaran
+                ├── my-courses.js       ← Loader kursus yang diikuti & update progress belajar
+                ├── profile.js          ← Loader data profil & submit perubahan informasi diri
+                └── support.js          ← Loader riwayat tiket bantuan & modal pembuatan tiket
+  </pre>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: PENJELASAN DETAIL SETIAP FILE -->
+  <h1>3. Penjelasan Detail Setiap Berkas (File-by-File Breakdown)</h1>
+
+  <h2>3.1 Root & Dokumentasi Dasar</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">.gitignore</div>
+    <div class="file-desc">Menginstruksikan Git untuk tidak menyertakan berkas-berkas sensitif atau direktori berukuran besar seperti <code>node_modules/</code>, berkas kredensial <code>.env</code>, serta berkas log eksekusi ke repositori Git.</div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">README.md</div>
+    <div class="file-desc">Panduan komprehensif bagi pengembang dan penguji yang berisi deskripsi aplikasi, prasyarat sistem (Node.js & XAMPP), langkah setup database, panduan menjalankan backend, tabel akun demo, ringkasan API, dan solusi pemecahan masalah (<em>troubleshooting</em>).</div>
+  </div>
+
+  <h2>3.2 Database Layer (folder: database/)</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">database/database.sql</div>
+    <div class="file-desc">Skrip SQL DDL & DML mandiri yang siap diimpor langsung via phpMyAdmin. Berisi instruksi pembuatan database <code>learnhire_db</code>, 9 tabel berelasi (dengan Primary Key, Foreign Key, dan Unique Constraint), serta data awalan (7 pengguna, 6 perusahaan, 12 lowongan kerja, 10 kursus, dan data transaksi lamaran). Password akun demo telah di-hash menggunakan algoritma <code>bcryptjs</code> (cost factor 10).</div>
+  </div>
+
+  <h2>3.3 Backend Configuration & Core (folder: backend/)</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/server.js</div>
+    <div class="file-desc">Berkas utama Express.js. Mengatur konfigurasi middleware keamanan (Helmet dengan CSP permissive untuk font eksternal, CORS untuk komunikasi lintas origin, dan Express JSON parser). Melayani penyajian berkas statis frontend (folder <code>../frontend</code>), me-mount rute API pada path <code>/api</code>, serta menangani Single Page Application fallback untuk rute non-API.</div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/package.json</div>
+    <div class="file-desc">Mendefinisikan metadata project backend serta daftar dependensi resmi: <code>express</code>, <code>mysql2</code>, <code>cors</code>, <code>dotenv</code>, <code>bcryptjs</code>, <code>jsonwebtoken</code>, <code>helmet</code>, dan dev-dependency <code>nodemon</code> untuk hot-reloading selama pengembangan.</div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/.env & backend/.env.example</div>
+    <div class="file-desc">Menyimpan konfigurasi variabel lingkungan lokal: port server (3000), host database (localhost), port MySQL (3306), nama database (<code>learnhire_db</code>), user root, serta kunci rahasia tanda tangan digital JWT (<code>JWT_SECRET</code>).</div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/config/database.js</div>
+    <div class="file-desc">Membentuk koneksi database berbasis <strong>Connection Pool</strong> menggunakan library <code>mysql2</code>. Mengaktifkan metode <code>pool.promise()</code> agar seluruh pemanggilan query SQL di layer model dapat dieksekusi secara asinkron (<code>async/await</code>).</div>
+  </div>
+
+  <h2>3.4 Backend Middleware Layer (folder: backend/middleware/)</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/middleware/auth.middleware.js</div>
+    <div class="file-desc">Berisi tiga fungsi penjaga keamanan rute:
+      <ul>
+        <li><code>verifyToken</code>: Mengekstrak token dari header <code>Authorization: Bearer &lt;token&gt;</code>, memvalidasi masa berlaku dan signature JWT, serta menyematkan payload user ke <code>req.user</code>.</li>
+        <li><code>isAdmin</code>: Memeriksa apakah <code>req.user.role === 'admin'</code> untuk melindungi endpoint khusus administrator (CUD lowongan, CUD kursus).</li>
+        <li><code>optionalAuth</code>: Mengekstrak token jika ada, namun tidak menggagalkan request jika token tidak disediakan (berguna untuk endpoint publik).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/middleware/error.middleware.js</div>
+    <div class="file-desc">Pusat penanganan error terpusat (<em>Centralized Error Handling</em>). Menyediakan fungsi <code>notFound</code> (mengembalikan HTTP 404 berformat JSON standar) dan <code>errorHandler</code> (menangkap unhandled exception, mengembalikan HTTP 500 berformat JSON tanpa membocorkan stack trace mentah ke pengguna).</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>3.5 Backend Models Layer (folder: backend/models/)</h2>
+  <p>Layer model bertugas murni berinteraksi dengan database MySQL menggunakan <em>Prepared Statements</em> (parameterized queries) guna mencegah celah keamanan <strong>SQL Injection</strong>.</p>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/user.model.js</div>
+    <div class="file-desc">Menyediakan fungsi manipulasi entitas pengguna: <code>findAll</code>, <code>findById</code>, <code>findByEmail</code> (menyertakan password untuk verifikasi login), <code>create</code> (menerima nama, email, password terenkripsi, telepon, dan role), <code>update</code> (menggunakan sintaks SQL <code>COALESCE</code> untuk mendukung pembaruan parsial profil tanpa menimpa data yang tidak diisi), dan <code>delete</code>.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/job.model.js</div>
+    <div class="file-desc">Mengelola data lowongan pekerjaan. Fungsi <code>findAll</code> mendukung filter dinamis berdasarkan kata kunci pencarian (judul/deskripsi), ID kategori, tipe pekerjaan (Full-time/Part-time/Contract/Internship), dan status aktif dengan melakukan <code>JOIN</code> ke tabel <code>companies</code> dan <code>job_categories</code>.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/company.model.js</div>
+    <div class="file-desc">Menyediakan operasi data master perusahaan mitra penyedia lowongan: nama, industri, lokasi, logo, dan deskripsi institusi.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/course.model.js</div>
+    <div class="file-desc">Mengelola data kursus online. Menyediakan query <code>findAll</code> dengan <code>JOIN</code> ke <code>course_categories</code>, mendukung filter pencarian, filter kategori, dan filter level keahlian (Beginner, Intermediate, Advanced).</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/application.model.js</div>
+    <div class="file-desc">Mengelola data transaksi pelamaran kerja pengguna. Memiliki fungsi <code>findByUserId</code> untuk menampilkan lamaran milik user tertentu, <code>checkExisting</code> untuk mencegah user melamar lowongan yang sama lebih dari satu kali, <code>create</code> untuk menyimpan surat lamaran, <code>update</code> untuk mengubah status seleksi, dan <code>delete</code> untuk pembatalan lamaran.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/enrollment.model.js</div>
+    <div class="file-desc">Mengelola keikutsertaan kursus online. Fungsi <code>create</code> secara otomatis menginkremen kolom <code>total_students</code> pada tabel <code>courses</code>. Fungsi <code>update</code> mengelola persentase progres belajar dan otomatis mencatat timestamp <code>completed_at</code> jika status diset menjadi 'completed'.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/category.model.js</div>
+    <div class="file-desc">Menyediakan fungsi pembacaan kategori pekerjaan (<code>findAllJobCategories</code>) dan kategori pelatihan kursus (<code>findAllCourseCategories</code>) untuk kebutuhan dropdown filter pada antarmuka frontend.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/models/support.model.js</div>
+    <div class="file-desc">Mengelola tiket bantuan pengguna (Customer Service). Menyediakan fungsi pembuatan pesan kendala, pengambilan riwayat pesan pengguna, pembaruan balasan solusi dari admin, dan penghapusan tiket.</div>
+  </div>
+
+  <h2>3.6 Backend Controllers Layer (folder: backend/controllers/)</h2>
+  <p>Layer controller bertindak sebagai koordinator logika bisnis: memvalidasi input klien, memanggil model terkait, dan mengembalikan respon JSON seragam berformat <code>{ success: true/false, message: "...", data: ... }</code> beserta status code HTTP yang sesuai.</p>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/controllers/auth.controller.js</div>
+    <div class="file-desc">
+      <ul>
+        <li><code>register</code>: Memvalidasi kelengkapan input, memeriksa keunikan email, mengenkripsi password dengan <code>bcryptjs</code>, menyimpan data ke database, dan menghasilkan token JWT.</li>
+        <li><code>login</code>: Memeriksa keberadaan email, mencocokkan password menggunakan <code>bcrypt.compare</code>, dan menghasilkan token JWT berisi payload <code>{ id, name, role }</code> jika valid.</li>
+        <li><code>getProfile</code> & <code>updateProfile</code>: Membaca dan memperbarui informasi akun user yang sedang login.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/controllers/job.controller.js & course.controller.js</div>
+    <div class="file-desc">Menangani request publik untuk melihat seluruh katalog (dengan parameter query) maupun detail per ID. Membatasi aksi tambah, edit, dan hapus hanya untuk pengguna ber-role 'admin'.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/controllers/application.controller.js</div>
+    <div class="file-desc">Mengatur proses pelamaran. Menolak pengiriman lamaran ganda pada lowongan yang sama. Membatasi pengguna biasa agar hanya dapat melihat dan menghapus lamaran milik akunnya sendiri, sementara akun admin memiliki hak akses untuk melihat seluruh lamaran masuk dan memperbarui statusnya.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/controllers/enrollment.controller.js</div>
+    <div class="file-desc">Menangani pendaftaran kelas online gratis/berbayar, memvalidasi pendaftaran ganda, serta menyediakan endpoint pembaruan progres belajar (persentase kelulusan).</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/controllers/dashboard.controller.js</div>
+    <div class="file-desc">Mengumpulkan statistik ringkasan sistem secara real-time dari database (Total Lowongan Aktif, Total Kursus Aktif, Total Pengguna Terdaftar, dan Total Lamaran Masuk) untuk ditampilkan pada kartu statistik beranda.</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>3.7 Backend Routes Layer (folder: backend/routes/)</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/routes/index.js</div>
+    <div class="file-desc">Master router yang menggabungkan seluruh sub-rute ke bawah prefix <code>/api</code> (seperti <code>/api/auth</code>, <code>/api/jobs</code>, <code>/api/courses</code>, <code>/api/applications</code>, <code>/api/enrollments</code>, <code>/api/support</code>, dan <code>/api/dashboard</code>).</div>
+  </div>
+  <div class="file-item avoid-break">
+    <div class="file-title">backend/routes/*.routes.js (9 file rute)</div>
+    <div class="file-desc">Mendefinisikan pemetaan HTTP Verb (GET, POST, PUT, DELETE), penyematan middleware autentikasi (<code>verifyToken</code>, <code>isAdmin</code>), dan penghubungan ke fungsi controller spesifik.</div>
+  </div>
+
+  <h2>3.8 Frontend Core & Assets (folder: frontend/assets/)</h2>
+  <div class="file-item avoid-break">
+    <div class="file-title">frontend/assets/css/style.css</div>
+    <div class="file-desc">Pusat styling aplikasi dengan tema visual <strong>Dark Glassmorphism</strong> sesuai prototipe Canva:
+      <ul>
+        <li>Palette warna: Navy gelap (<code>#0a0e27</code>), Secondary (<code>#1a1f4e</code>), Gradient ungu-ke-biru (<code>#7c3aed</code> ke <code>#3b82f6</code>).</li>
+        <li>Komponen kartu transparan dengan efek blur latar belakang (<code>backdrop-filter: blur(10px)</code>).</li>
+        <li>Dekorasi visual lingkaran cahaya melayang animasi (<em>floating animated orbs</em>).</li>
+        <li>Sistem grid responsif untuk Desktop (multi-kolom + fixed sidebar), Tablet (sidebar mengecil), dan Mobile (hamburger menu bar atas).</li>
+        <li>Styling formulir dengan glow fokus, status badge warna-warni, progress bar bergradien, dan toast notifikasi.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">frontend/assets/js/api.js</div>
+    <div class="file-desc">Helper HTTP terpusat berbasis <code>fetch()</code>. Mengotomatisasi penyisipan header <code>Authorization: Bearer &lt;token&gt;</code> dari localStorage pada setiap request yang membutuhkan autentikasi, serta menangani error sesi kedaluwarsa (HTTP 401) dengan mengarahkan pengguna kembali ke halaman login.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">frontend/assets/js/auth.js</div>
+    <div class="file-desc">Modul pengelola sesi autentikasi pada sisi klien. Menyediakan fungsi <code>getToken</code>, <code>setToken</code>, <code>isLoggedIn</code>, <code>checkAuth</code> (guard untuk halaman privat), <code>checkGuest</code> (guard agar user yang sudah login tidak bisa membuka halaman login/register kembali), <code>logout</code>, dan <code>parseJwt</code> untuk mengekstrak data role dan nama dari payload token.</div>
+  </div>
+
+  <div class="file-item avoid-break">
+    <div class="file-title">frontend/assets/js/app.js</div>
+    <div class="file-desc">Pustaka utilitas antarmuka bersama:
+      <ul>
+        <li><code>showNotification(message, type)</code>: Menampilkan toast notifikasi animasi di sudut kanan atas.</li>
+        <li><code>formatCurrency(amount)</code>: Mengonversi angka integer menjadi format mata uang Rupiah (IDR) standar Indonesia.</li>
+        <li><code>formatDate(dateString)</code>: Mengonversi tanggal ISO menjadi format penanggalan berbahasa Indonesia.</li>
+        <li><code>loadSidebar()</code> & <code>updateUserInfo()</code>: Menginjeksi komponen sidebar secara asinkron, menandai menu aktif, serta menampilkan nama dan lencana status (<strong>ADMIN</strong> atau <strong>USER</strong>) secara akurat.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>3.9 Frontend Pages & Scripts (folder: frontend/pages/ dan assets/js/pages/)</h2>
+  
+  <table class="data-table avoid-break">
+    <thead>
+      <tr>
+        <th style="width:25%;">Berkas HTML & JS</th>
+        <th style="width:25%;">Endpoint API Terkait</th>
+        <th>Fungsi & Perilaku Antarmuka</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>index.html</code></td>
+        <td><code>GET /api/dashboard</code></td>
+        <td>Landing page publik (Begin Page). Berisi hero banner bergradien, 3 kartu keunggulan fitur, counter statistik platform, dan tombol navigasi ke login.</td>
+      </tr>
+      <tr>
+        <td><code>login.html</code><br><code>login.js</code></td>
+        <td><code>POST /api/auth/login</code></td>
+        <td>Formulir masuk. Memvalidasi format isian, memanggil API login, menyimpan JWT ke localStorage, dan mengalihkan halaman ke beranda.</td>
+      </tr>
+      <tr>
+        <td><code>register.html</code><br><code>register.js</code></td>
+        <td><code>POST /api/auth/register</code></td>
+        <td>Formulir registrasi akun baru (Nama, Email, No. Telepon, Password, Konfirmasi Password). Akun langsung aktif tanpa hambatan verifikasi eksternal.</td>
+      </tr>
+      <tr>
+        <td><code>home.html</code><br><code>home.js</code></td>
+        <td><code>GET /api/dashboard</code><br><code>GET /api/jobs</code><br><code>GET /api/courses</code></td>
+        <td>Dashboard utama. Menampilkan salam personal, 4 kartu ringkasan (Total Loker, Total Kursus, Lamaran Saya, Kursus Saya), serta cuplikan lowongan dan kursus terpopuler.</td>
+      </tr>
+      <tr>
+        <td><code>jobs.html</code><br><code>jobs.js</code></td>
+        <td><code>GET /api/jobs</code><br><code>GET /api/categories/jobs</code></td>
+        <td>Katalog eksplorasi lowongan. Mendukung pencarian teks real-time dan penyaringan kategori pekerjaan secara dinamis.</td>
+      </tr>
+      <tr>
+        <td><code>job-detail.html</code><br><code>job-detail.js</code></td>
+        <td><code>GET /api/jobs/:id</code><br><code>POST /api/applications</code></td>
+        <td>Rincian lowongan kerja, profil perusahaan, kisaran gaji, dan syarat kerja. Memiliki modal formulir surat lamaran dan mendeteksi apakah lowongan telah dilamar.</td>
+      </tr>
+      <tr>
+        <td><code>courses.html</code><br><code>courses.js</code></td>
+        <td><code>GET /api/courses</code><br><code>GET /api/categories/courses</code></td>
+        <td>Katalog pelatihan keterampilan. Menampilkan rating bintang, tingkat kesulitan, durasi, jumlah siswa, dan harga kelas.</td>
+      </tr>
+      <tr>
+        <td><code>course-detail.html</code><br><code>course-detail.js</code></td>
+        <td><code>GET /api/courses/:id</code><br><code>POST /api/enrollments</code></td>
+        <td>Rincian silabus kursus. Jika user sudah terdaftar, tombol pendaftaran otomatis berubah menjadi bilah progres belajar.</td>
+      </tr>
+      <tr>
+        <td><code>applications.html</code><br><code>applications.js</code></td>
+        <td><code>GET /api/applications</code><br><code>DELETE /api/applications/:id</code></td>
+        <td>Tabel pelacakan status lamaran pengguna (Pending, Reviewed, Accepted, Rejected) serta tombol pembatalan lamaran.</td>
+      </tr>
+      <tr>
+        <td><code>my-courses.html</code><br><code>my-courses.js</code></td>
+        <td><code>GET /api/enrollments</code><br><code>PUT /api/enrollments/:id</code></td>
+        <td>Pelacak pembelajaran aktif. Dilengkapi tombol interaktif untuk menambah progres belajar (+25%) hingga kursus dinyatakan selesai (100%).</td>
+      </tr>
+      <tr>
+        <td><code>profile.html</code><br><code>profile.js</code></td>
+        <td><code>GET /api/auth/profile</code><br><code>PUT /api/auth/profile</code></td>
+        <td>Manajemen profil diri. Menampilkan kartu identitas, lencana status role, serta formulir pembaruan nomor telepon, keahlian teknis, dan bio diri.</td>
+      </tr>
+      <tr>
+        <td><code>support.html</code><br><code>support.js</code></td>
+        <td><code>GET /api/support</code><br><code>POST /api/support</code></td>
+        <td>Pusat bantuan pelanggan (Customer Service). Menampilkan riwayat tiket pertanyaan dan tanggapan balasan dari tim administrator.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 4: STRUKTUR DATABASE MYSQL -->
+  <h1>4. Struktur Relasional Database MySQL (learnhire_db)</h1>
+  <p>Database <code>learnhire_db</code> mengadopsi struktur relasional yang ternormalisasi untuk menjamin integritas data:</p>
+
+  <table class="data-table avoid-break">
+    <thead>
+      <tr>
+        <th>Nama Tabel</th>
+        <th>Kolom-Kolom Utama</th>
+        <th>Kunci & Relasi (Constraints)</th>
+        <th>Peran Bisnis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>users</code></td>
+        <td>id, name, email, password, phone, address, avatar, bio, skills, cv_url, role</td>
+        <td>PRIMARY KEY (id)<br>UNIQUE (email)</td>
+        <td>Menyimpan data identitas pencari kerja dan administrator sistem. Password tersimpan dalam hash bcrypt.</td>
+      </tr>
+      <tr>
+        <td><code>companies</code></td>
+        <td>id, name, logo, description, location, website, industry</td>
+        <td>PRIMARY KEY (id)</td>
+        <td>Menyimpan data institusi/perusahaan mitra penyedia lowongan pekerjaan.</td>
+      </tr>
+      <tr>
+        <td><code>job_categories</code></td>
+        <td>id, name, icon</td>
+        <td>PRIMARY KEY (id)</td>
+        <td>Kategori bidang lowongan (Teknologi, Desain, Marketing, Keuangan, Rekayasa, Data Science).</td>
+      </tr>
+      <tr>
+        <td><code>jobs</code></td>
+        <td>id, company_id, category_id, title, description, requirements, salary_min, salary_max, location, type, status</td>
+        <td>PRIMARY KEY (id)<br>FK (company_id) → companies(id)<br>FK (category_id) → job_categories(id)</td>
+        <td>Katalog lowongan pekerjaan yang dibuka oleh perusahaan mitra.</td>
+      </tr>
+      <tr>
+        <td><code>job_applications</code></td>
+        <td>id, user_id, job_id, cover_letter, cv_url, status</td>
+        <td>PRIMARY KEY (id)<br>FK (user_id) → users(id)<br>FK (job_id) → jobs(id)<br>UNIQUE KEY (user_id, job_id)</td>
+        <td>Transaksi lamaran kerja. Unique constraint mencegah user melamar lowongan yang sama secara berulang.</td>
+      </tr>
+      <tr>
+        <td><code>course_categories</code></td>
+        <td>id, name, icon</td>
+        <td>PRIMARY KEY (id)</td>
+        <td>Kategori pelatihan kursus (Programming, UI/UX, Data Science, Business, Language).</td>
+      </tr>
+      <tr>
+        <td><code>courses</code></td>
+        <td>id, category_id, title, description, instructor, duration, level, price, rating, total_students, status</td>
+        <td>PRIMARY KEY (id)<br>FK (category_id) → course_categories(id)</td>
+        <td>Katalog pelatihan keterampilan terstruktur dengan instruktur industri.</td>
+      </tr>
+      <tr>
+        <td><code>course_enrollments</code></td>
+        <td>id, user_id, course_id, progress, status, enrolled_at, completed_at</td>
+        <td>PRIMARY KEY (id)<br>FK (user_id) → users(id)<br>FK (course_id) → courses(id)<br>UNIQUE KEY (user_id, course_id)</td>
+        <td>Data keikutsertaan pelatihan user, melacak persentase progres belajar (0-100%).</td>
+      </tr>
+      <tr>
+        <td><code>support_messages</code></td>
+        <td>id, user_id, subject, message, reply, status</td>
+        <td>PRIMARY KEY (id)<br>FK (user_id) → users(id)</td>
+        <td>Komunikasi dua arah antara pengguna dengan tim administrator terkait bantuan teknis.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 5: PANDUAN PENGOPERASIAN -->
+  <h1 class="avoid-break">5. Panduan Pengoperasian & Akun Demo</h1>
+  
+  <h2>5.1 Akun Demo Bawaan</h2>
+  <table class="data-table avoid-break">
+    <thead>
+      <tr>
+        <th>Role Akun</th>
+        <th>Alamat Email</th>
+        <th>Kata Sandi</th>
+        <th>Hak Akses & Batasan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-amber">Admin</span></td>
+        <td><code>admin@learnhire.com</code></td>
+        <td><code>admin123</code></td>
+        <td>Superuser. Memiliki izin CUD data lowongan, kursus, perusahaan mitra, dan meninjau seluruh lamaran pelamar.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-blue">User</span></td>
+        <td><code>budi@example.com</code></td>
+        <td><code>user123</code></td>
+        <td>Pencari kerja reguler. Dapat melamar pekerjaan, mendaftar kursus, update progress, dan mengirim tiket bantuan.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-blue">User</span></td>
+        <td><code>sari@example.com</code></td>
+        <td><code>user123</code></td>
+        <td>Pencari kerja reguler dengan riwayat data lamaran dan keikutsertaan kelas yang berbeda.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5.2 Cara Menjalankan Aplikasi Secara Mandiri</h2>
+  <ol class="avoid-break">
+    <li><strong>Aktifkan XAMPP</strong>: Buka XAMPP Control Panel, pastikan service <strong>Apache</strong> dan <strong>MySQL</strong> berada pada status running (Port 80 dan Port 3306).</li>
+    <li><strong>Buka phpMyAdmin</strong>: Buka browser di <code>http://localhost/phpmyadmin/</code>. Impor berkas <code>database/database.sql</code> (Database <code>learnhire_db</code> dan 9 tabel akan terisi otomatis).</li>
+    <li><strong>Jalankan Backend Server</strong>: Buka PowerShell / Terminal pada folder <code>backend</code>, lalu jalankan:
+      <pre style="background:#f1f5f9; padding:6px 10px; border-radius:4px; margin:4px 0 8px 0; font-size:8.5pt;">npm run dev  (atau: node server.js)</pre>
+    </li>
+    <li><strong>Akses Antarmuka Web</strong>: Buka browser di <code>http://localhost:3000</code>. Seluruh fitur dapat langsung diuji secara lokal.</li>
+  </ol>
+
+</body>
+</html>

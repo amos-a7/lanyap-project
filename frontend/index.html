@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHire - Lowongan Pekerjaan & Kursus</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 10;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .hero p.tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .hero p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .features {
+            padding: 5rem 2rem;
+            background: var(--secondary-bg);
+        }
+        .stats {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p.tagline { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="text-gradient">LearnHire</h1>
+            <p class="tagline">Temukan Pekerjaan Impian & Tingkatkan Skill Anda</p>
+            <p class="subtitle">Platform terbaik untuk mencari lowongan kerja dan mengikuti kursus online berkualitas</p>
+            <div class="d-flex justify-center gap-2 mt-4" style="justify-content: center;">
+                <a href="pages/login.html" class="btn btn-primary btn-lg" style="font-size: 1.2rem; padding: 1rem 2rem;">Mulai Sekarang</a>
+            </div>
+            <div class="mt-3">
+                <a href="pages/login.html" class="text-secondary">Sudah punya akun? Masuk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="text-center mb-4">
+            <h2 class="text-gradient">Fitur Unggulan</h2>
+        </div>
+        <div class="grid-3" style="max-width: 1200px; margin: 0 auto;">
+            <div class="card text-center">
+                <div class="stat-icon mx-auto mb-3" style="margin: 0 auto;"><i class="fas fa-briefcase"></i></div>
+                <h3>Lowongan Kerja</h3>
+                <p class="text-secondary">Ribuan lowongan pekerjaan dari perusahaan terkemuka menanti Anda.</p>
+            </div>
+            <div class="card text-center">
+                <div class="stat-icon mx-auto mb-3" style="margin: 0 auto;"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Kursus Online</h3>
+                <p class="text-secondary">Tingkatkan kemampuan Anda dengan berbagai kursus dari ahlinya.</p>
+            </div>
+            <div class="card text-center">
+                <div class="stat-icon mx-auto mb-3" style="margin: 0 auto;"><i class="fas fa-file-alt"></i></div>
+                <h3>CV Builder</h3>
+                <p class="text-secondary">Buat CV profesional dengan mudah untuk menarik perhatian HRD.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
+            <div>
+                <h2 class="text-gradient" style="font-size: 3rem;">5,000+</h2>
+                <p>Lowongan Pekerjaan</p>
+            </div>
+            <div>
+                <h2 class="text-gradient" style="font-size: 3rem;">200+</h2>
+                <p>Kursus Online</p>
+            </div>
+            <div>
+                <h2 class="text-gradient" style="font-size: 3rem;">10,000+</h2>
+                <p>Pengguna Aktif</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="text-secondary">&copy; 2024 LearnHire. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Redirect to home if already logged in
+        if (auth.isLoggedIn()) {
+            window.location.href = 'pages/home.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamaran Saya - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+            <div class="mobile-topbar mb-3">
+                <div class="brand text-gradient">LearnHire</div>
+                <button class="btn btn-outline" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="mb-1">Lamaran Saya</h2>
+                <p class="text-secondary">Pantau status lamaran pekerjaan Anda.</p>
+            </div>
+
+            <div class="card">
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--card-border);">
+                                <th style="padding: 1rem;">Posisi Pekerjaan</th>
+                                <th style="padding: 1rem;">Perusahaan</th>
+                                <th style="padding: 1rem;">Tanggal Melamar</th>
+                                <th style="padding: 1rem;">Status</th>
+                                <th style="padding: 1rem;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applications-table-body">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/applications.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kursus - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+            <a href="courses.html" class="btn btn-outline mb-4"><i class="fas fa-arrow-left"></i> Kembali</a>
+            
+            <div id="course-detail-container">
+                <!-- Loaded via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Enroll Modal -->
+    <div id="enroll-modal" class="modal">
+        <div class="modal-content card text-center">
+            <h3 class="mb-3">Konfirmasi Pendaftaran</h3>
+            <p class="mb-4">Apakah Anda yakin ingin mendaftar di kursus ini?</p>
+            <div class="d-flex gap-2 justify-center">
+                <button type="button" class="btn btn-outline" id="btn-close-modal">Batal</button>
+                <button type="button" class="btn btn-primary" id="btn-confirm-enroll">Ya, Daftar Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/course-detail.js"></script>
+</body>
+</html>

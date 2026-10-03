@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <!-- Mobile Topbar -->
+            <div class="mobile-topbar mb-3">
+                <div class="brand text-gradient">LearnHire</div>
+                <button class="btn btn-outline" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="d-flex justify-between align-center mb-4">
+                <div>
+                    <h2 class="mb-1">Selamat Datang, <span class="user-name-display text-gradient">User</span>!</h2>
+                    <p class="text-secondary">Siap untuk menemukan pekerjaan dan belajar hal baru hari ini?</p>
+                </div>
+                <!-- Search bar could go here -->
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                    <div>
+                        <div class="text-secondary">Total Jobs</div>
+                        <div class="stat-value" id="stat-jobs">-</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <div class="text-secondary">Total Courses</div>
+                        <div class="stat-value" id="stat-courses">-</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                    <div>
+                        <div class="text-secondary">My Applications</div>
+                        <div class="stat-value" id="stat-apps">-</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-book-reader"></i></div>
+                    <div>
+                        <div class="text-secondary">My Courses</div>
+                        <div class="stat-value" id="stat-my-courses">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Jobs -->
+            <div class="mb-4">
+                <div class="d-flex justify-between align-center mb-3">
+                    <h3>Lowongan Terbaru</h3>
+                    <a href="jobs.html" class="text-secondary">Lihat Semua</a>
+                </div>
+                <div id="latest-jobs-container" class="grid-3">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+
+            <!-- Popular Courses -->
+            <div class="mb-4">
+                <div class="d-flex justify-between align-center mb-3">
+                    <h3>Kursus Populer</h3>
+                    <a href="courses.html" class="text-secondary">Lihat Semua</a>
+                </div>
+                <div id="popular-courses-container" class="grid-3">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="auth-wrapper">
+        <div class="card auth-card">
+            <div class="text-center mb-4">
+                <h2 class="text-gradient mb-1">LearnHire</h2>
+                <p class="text-secondary">Buat akun baru</p>
+            </div>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <i class="fas fa-user form-icon"></i>
+                    <input type="text" id="name" class="form-control" required placeholder="Masukkan nama lengkap">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <i class="fas fa-envelope form-icon"></i>
+                    <input type="email" id="email" class="form-control" required placeholder="Masukkan email">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">No. Telepon</label>
+                    <i class="fas fa-phone form-icon"></i>
+                    <input type="tel" id="phone" class="form-control" required placeholder="Masukkan nomor telepon">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" id="password" class="form-control" required placeholder="Buat password">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Konfirmasi Password</label>
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" id="confirm-password" class="form-control" required placeholder="Ulangi password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block mb-3" id="btn-submit">
+                    Daftar
+                </button>
+                
+                <div class="text-center">
+                    <a href="login.html" class="text-secondary">Sudah punya akun? <span class="text-gradient">Masuk</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/register.js"></script>
+</body>
+</html>

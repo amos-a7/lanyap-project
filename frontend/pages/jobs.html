@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowongan Kerja - LearnHire</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-3"></div>
+    
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <div class="mobile-topbar mb-3">
+                <div class="brand text-gradient">LearnHire</div>
+                <button class="btn btn-outline" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="mb-1">Lowongan Pekerjaan</h2>
+                <p class="text-secondary">Temukan karir impian Anda dari berbagai perusahaan.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="card mb-4">
+                <form id="filter-form" class="grid-3">
+                    <div class="form-group mb-0">
+                        <i class="fas fa-search form-icon" style="top: 1rem;"></i>
+                        <input type="text" id="search-input" class="form-control" placeholder="Cari posisi pekerjaan...">
+                    </div>
+                    <div class="form-group mb-0">
+                        <select id="category-select" class="form-control">
+                            <option value="">Semua Kategori</option>
+                            <option value="IT">IT & Software</option>
+                            <option value="Design">Design & Creative</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-primary btn-block">Cari Lowongan</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="jobs-container" class="grid-3">
+                <!-- Loaded via JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pages/jobs.js"></script>
+</body>
+</html>
