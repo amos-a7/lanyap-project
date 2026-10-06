@@ -2,20 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary-bg: #0a0e27;
-  --secondary-bg: #1a1f4e;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --accent-purple: #7c3aed;
-  --accent-blue: #3b82f6;
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --info: #3b82f6;
+  --primary-bg: #0B0F19;
+  --secondary-bg: #161E2E;
+  --card-bg: rgba(22, 30, 46, 0.75);
+  --card-border: rgba(51, 65, 85, 0.45);
+  --accent-purple: #10B981;
+  --accent-blue: #34D399;
+  --accent-emerald: #10B981;
+  --accent-mint: #34D399;
+  --accent-gold: #F59E0B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --info: #0EA5E9;
   --font-family: 'Poppins', sans-serif;
-  --transition: all 0.3s ease;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -37,16 +40,16 @@ body {
 .orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
+  filter: blur(85px);
+  opacity: 0.25;
   z-index: -1;
   animation: float 20s infinite ease-in-out alternate;
 }
 
 .orb-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--accent-purple);
+  width: 450px;
+  height: 450px;
+  background: #10B981;
   top: -100px;
   left: -100px;
 }
@@ -54,16 +57,16 @@ body {
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: var(--accent-blue);
+  background: #047857;
   bottom: -150px;
   right: -100px;
   animation-delay: -5s;
 }
 
 .orb-3 {
-  width: 300px;
-  height: 300px;
-  background: var(--accent-purple);
+  width: 350px;
+  height: 350px;
+  background: #065F46;
   top: 40%;
   left: 50%;
   animation-delay: -10s;
@@ -78,10 +81,10 @@ body {
 /* Typography & Utilities */
 h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
 a { color: var(--text-primary); text-decoration: none; transition: var(--transition); }
-a:hover { color: var(--accent-blue); }
+a:hover { color: #34D399; }
 
 .text-gradient {
-  background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -103,25 +106,25 @@ a:hover { color: var(--accent-blue); }
 }
 
 .btn-primary {
-  background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
   color: #fff;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.55);
   transform: translateY(-2px);
   color: #fff;
 }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid var(--accent-purple);
-  color: var(--text-primary);
+  border: 1px solid #10B981;
+  color: #34D399;
 }
 
 .btn-outline:hover {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(16, 185, 129, 0.15);
 }
 
 .btn-block { width: 100%; }
@@ -169,8 +172,8 @@ a:hover { color: var(--accent-blue); }
 
 .form-control:focus {
   outline: none;
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  border-color: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 .form-icon {
@@ -238,12 +241,12 @@ a:hover { color: var(--accent-blue); }
 }
 
 .nav-link:hover, .nav-link.active {
-  background: linear-gradient(90deg, rgba(124, 58, 237, 0.1), rgba(59, 130, 246, 0.1));
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(52, 211, 153, 0.05));
   color: var(--text-primary);
 }
 
 .nav-link.active {
-  border-left: 3px solid var(--accent-purple);
+  border-left: 3px solid #10B981;
 }
 
 .sidebar-footer {
@@ -261,7 +264,7 @@ a:hover { color: var(--accent-blue); }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--accent-purple);
+  background: linear-gradient(135deg, #10B981, #059669);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,8 +322,8 @@ a:hover { color: var(--accent-blue); }
   width: 50px;
   height: 50px;
   border-radius: 12px;
-  background: rgba(124, 58, 237, 0.1);
-  color: var(--accent-purple);
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
   display: flex;
   align-items: center;
   justify-content: center;

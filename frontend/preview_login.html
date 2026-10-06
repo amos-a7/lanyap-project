@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - TalentForge</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .auth-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 2.5rem 2.2rem;
+            background: rgba(22, 30, 46, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.15);
+        }
+        .brand-logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34D399;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="auth-wrapper">
+        <div class="card auth-card text-center">
+            <div class="brand-logo-badge">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h2 class="text-gradient" style="font-size: 2.1rem; font-weight: 700; margin-bottom: 0.2rem;">TalentForge</h2>
+            <p class="text-secondary" style="font-size: 0.9rem; margin-bottom: 1.8rem;">Pintu Masuk Terpadu Sistem Talenta & Industri</p>
+            
+            <form style="text-align: left;">
+                <div class="form-group" style="margin-bottom: 1.2rem;">
+                    <label class="form-label" style="font-size: 0.85rem; font-weight: 500; color: #CBD5E1;">Email Akun</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94A3B8;"></i>
+                        <input type="email" class="form-control" value="budi.santoso@example.com" style="padding-left: 2.8rem; border-color: rgba(52, 211, 153, 0.3); background: rgba(11, 15, 25, 0.6);" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <label class="form-label" style="margin: 0; font-size: 0.85rem; font-weight: 500; color: #CBD5E1;">Kata Sandi</label>
+                        <a href="#" style="font-size: 0.8rem; color: #34D399;">Lupa Sandi?</a>
+                    </div>
+                    <div style="position: relative;">
+                        <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94A3B8;"></i>
+                        <input type="password" class="form-control" value="secretpassword123" style="padding-left: 2.8rem; border-color: rgba(52, 211, 153, 0.3); background: rgba(11, 15, 25, 0.6);" readonly>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem; color: #94A3B8;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" checked style="accent-color: #10B981;"> Ingat sesi saya (24 jam)
+                    </label>
+                </div>
+                
+                <button type="button" class="btn btn-primary btn-block" style="font-size: 1rem; font-weight: 600; padding: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fas fa-sign-in-alt"></i> Masuk ke Sistem
+                </button>
+                
+                <div class="text-center" style="margin-top: 1.5rem; font-size: 0.88rem;">
+                    <span class="text-secondary">Belum memiliki akun?</span> 
+                    <a href="#" style="color: #34D399; font-weight: 600; margin-left: 4px;">Daftar Sekarang</a>
+                </div>
+
+                <div class="text-center">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i> Dilindungi JWT & Bcrypt 10 Salt Rounds
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: talentforge_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: learnhire_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/database.sql:/docker-entrypoint-initdb.d/init.sql
+      - mariadb_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: talentforge_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ""
+      DB_NAME: learnhire_db
+      JWT_SECRET: talentforge_jwt_secret_key_2026_super_secure
+      JWT_EXPIRES_IN: 24h
+    depends_on:
+      - db
+    volumes:
+      - ./frontend:/app/frontend
+
+volumes:
+  mariadb_data:
